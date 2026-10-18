@@ -18,6 +18,15 @@ mv official_payload/Payload/Husk.app official_payload/Husk.app
 rmdir official_payload/Payload
 ls official_payload/Husk.app/Frameworks/
 
+echo "===== 1.5/5 stage prebuilt dylibs into build/ layout ====="
+OFF=official_payload/Husk.app
+mkdir -p build/ios-arm64/lib build/ios-arm64/sysroot/lib
+cp "$OFF/Frameworks/libqemu-aarch64-softmmu.dylib" build/ios-arm64/lib/
+cp "$OFF/Frameworks/libhuskps4.dylib" build/ios-arm64/lib/
+cp "$OFF/Frameworks/libANGLE-shared.dylib" build/ios-arm64/sysroot/lib/
+cp -R "$OFF/Frameworks/MoltenVK.framework" build/ios-arm64/lib/MoltenVK.framework
+ls -la build/ios-arm64/lib build/ios-arm64/sysroot/lib
+
 echo "===== 2/5 rust: build libhusk_rppairing.a ====="
 rustup target add aarch64-apple-ios 2>/dev/null || true
 ./scripts/build_rppairing_ios.sh
