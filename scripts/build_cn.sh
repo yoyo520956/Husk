@@ -10,7 +10,12 @@ echo "===== 1/5 fetch official 3.0 IPA (prebuilt blobs + guest resources) ====="
 rm -rf official_payload
 mkdir -p official_payload
 curl -sL --retry 3 -o /tmp/husk-official.ipa https://github.com/Leviidev/Husk/releases/download/3.0/Husk.ipa
+SZ=$(wc -c < /tmp/husk-official.ipa | tr -d ' ')
+echo "IPA size: $SZ"
+[ "$SZ" -gt 100000000 ] || { echo "IPA download too small -- aborting"; exit 1; }
 (cd official_payload && unzip -q /tmp/husk-official.ipa)
+mv official_payload/Payload/Husk.app official_payload/Husk.app
+rmdir official_payload/Payload
 ls official_payload/Husk.app/Frameworks/
 
 echo "===== 2/5 rust: build libhusk_rppairing.a ====="
