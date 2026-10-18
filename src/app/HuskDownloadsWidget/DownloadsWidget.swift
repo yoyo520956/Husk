@@ -100,7 +100,7 @@ private struct TimeLeft: View {
 
 @available(iOS 16.1, *)
 private func statePercent(_ s: HuskDownloadAttributes.ContentState) -> String {
-    if s.finished { return "Done" }
+    if s.finished { return "完成" }
     guard s.total > 0 else { return "…" }
     return "\(Int(Double(s.received) / Double(s.total) * 100))%"
 }

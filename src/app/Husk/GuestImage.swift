@@ -264,7 +264,7 @@ final class GuestImage: ObservableObject {
     private static let declinedKey = "husk.guest.updateDeclined"
     private var offered: String?
 
-    /// Ask about a release once: not when asking is turned off, and not again after "Not now" for that same release.
+    /// Ask about a release once: not when asking is turned off, and not again after "暂不" for that same release.
     private func offer(_ u: GuestUpdate, release digest: String) {
         let d = UserDefaults.standard
         guard d.object(forKey: Self.askUpdatesKey) as? Bool ?? true else {

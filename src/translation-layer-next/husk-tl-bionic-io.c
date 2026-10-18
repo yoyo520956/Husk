@@ -1505,7 +1505,14 @@ static void note_signal(const char *how, int sig)
 {
     if (sig == 6 || sig == 9 || sig == 11 || sig == 15 || sig == 3) tl_log_line("bionic: guest asked for signal %d (%s)", sig, how);
 }
-static int b_raise(int sig) { note_signal("raise", sig); int d = tl_signal_to_darwin(sig); if (d < 0) { tl_set_guest_errno(22); return -1; } return raise(d); }
+static int b_raise(int sig)
+{
+    note_signal("raise", sig);
+    /* raise(SIGABRT/SIGKILL) from the guest is a self-kill (assert handlers,
+       licence checks): end the guest instead of taking the signal for real. */
+    if ((sig == 6 || sig == 9) && tl_guest_exit_hook) { tl_guest_exit_hook(128 + sig); return 0; }
+    int d = tl_signal_to_darwin(sig); if (d < 0) { tl_set_guest_errno(22); return -1; } return raise(d);
+}
 
 
 /* ------------------------------------------------- raw Linux system calls */

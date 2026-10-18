@@ -19,24 +19,24 @@ struct SettingsTab: View {
                 } header: {
                     Text("JIT")
                 } footer: {
-                    Text("Android and Translation Layer games need JIT. StikJIT, built into Husk, turns it on without a computer.")
+                    Text("安卓系统与翻译层游戏都需要 JIT。Husk 内置的 StikJIT 无需电脑即可开启。")
                 }
 
-                Section("General") {
-                    row(DiscoverView(), "sparkle.magnifyingglass", .mint, "Discover", "Find apps in F-Droid and other repositories")
-                    row(LibrarySettings(), "square.grid.2x2.fill", .blue, "Library", "Your apps and their icons")
-                    row(PerformanceSettings(), "speedometer", .orange, "Performance", "Renderer, sound")
-                    row(AppearanceSettings(), "paintbrush.fill", .pink, "Appearance", "Light or dark, accent colour, app icon")
-                    row(FontSettings(), "textformat", .indigo, "Fonts", "Chinese, Japanese and Korean text")
-                    row(FAQTab(), "questionmark.circle.fill", .teal, "Help", "Answers to common problems")
+                Section("通用") {
+                    row(DiscoverView(), "sparkle.magnifyingglass", .mint, "发现", "Find apps in F-Droid and other repositories")
+                    row(LibrarySettings(), "square.grid.2x2.fill", .blue, "游戏库", "Your apps and their icons")
+                    row(PerformanceSettings(), "speedometer", .orange, "性能", "Renderer, sound")
+                    row(AppearanceSettings(), "paintbrush.fill", .pink, "外观", "Light or dark, accent colour, app icon")
+                    row(FontSettings(), "textformat", .indigo, "字体", "Chinese, Japanese and Korean text")
+                    row(FAQTab(), "questionmark.circle.fill", .teal, "帮助", "Answers to common problems")
                 }
 
                 Section {
                     Toggle(isOn: $multitask) {
                         Label {
                             VStack(alignment: .leading, spacing: 1) {
-                                Text("Open Apps in Windows")
-                                Text("Use Husk while an app runs").font(.caption).foregroundStyle(.secondary).lineLimit(1)
+                                Text("在窗口中打开应用")
+                                Text("应用运行时继续使用 Husk").font(.caption).foregroundStyle(.secondary).lineLimit(1)
                             }
                         } icon: {
                             RoundedRectangle(cornerRadius: 7, style: .continuous)
@@ -50,18 +50,17 @@ struct SettingsTab: View {
                         }
                     }
                 } header: {
-                    Text("Multitasking")
+                    Text("多任务")
                 } footer: {
-                    Text("Apps and games open in a window you can move, resize and minimise to a dock, like LiveContainer's multitasking. "
-                       + "Each app can override this in its own settings.")
+                    Text("应用和游戏在可移动、可缩放、可最小化到程序坞的窗口中打开，类似 LiveContainer 的多任务。每个应用可在自己的设置里单独覆盖。")
                 }
 
                 Section {
                     Toggle(isOn: $askCompat) {
                         Label {
                             VStack(alignment: .leading, spacing: 1) {
-                                Text("Ask How Games Ran")
-                                Text("After playing, once per game per update").font(.caption).foregroundStyle(.secondary).lineLimit(1)
+                                Text("询问游戏运行情况")
+                                Text("游玩后，每个游戏每次更新询问一次").font(.caption).foregroundStyle(.secondary).lineLimit(1)
                             }
                         } icon: {
                             RoundedRectangle(cornerRadius: 7, style: .continuous)
@@ -75,29 +74,27 @@ struct SettingsTab: View {
                         }
                     }
                     Link(destination: CompatibilityStore.site) {
-                        Label("Compatibility List", systemImage: "safari")
+                        Label("兼容性列表", systemImage: "safari")
                     }
                 } header: {
-                    Text("Compatibility")
+                    Text("兼容性")
                 } footer: {
-                    Text("Game pages and the Store show how each app runs for everyone, from antiweb.lol. Your reports go there "
-                       + "with your device, iOS version, Husk build and JIT method.")
+                    Text("游戏页与商店基于 antiweb.lol 展示每个应用在所有人那里的运行情况。你的报告会连同设备、iOS 版本、Husk 构建与 JIT 方式一起提交到那里。")
                 }
 
                 Section {
-                    row(AndroidSystemPage(), "apps.iphone", AndroidMark.green, "Android", "Experimental: full Android in an emulator")
-                    row(InputSettings(), "hand.tap.fill", .indigo, "Input", "Screen, touch, keyboard")
-                    row(NetworkSettings(), "globe", .green, "Network", "Internet and saved sessions")
-                    row(SavedMachineSettings(), "externaldrive.fill", .teal, "Saved Machine", "Snapshots and automatic saving")
+                    row(AndroidSystemPage(), "apps.iphone", AndroidMark.green, "安卓系统", "Experimental: full Android in an emulator")
+                    row(InputSettings(), "hand.tap.fill", .indigo, "输入", "Screen, touch, keyboard")
+                    row(NetworkSettings(), "globe", .green, "网络", "Internet and saved sessions")
+                    row(SavedMachineSettings(), "externaldrive.fill", .teal, "已保存的快照", "Snapshots and automatic saving")
                 } header: {
-                    Text("Android Emulator")
+                    Text("安卓模拟器")
                 } footer: {
-                    Text("Full Android runs in an emulator, for the apps the Translation Layer can't run yet. It is experimental: slow, "
-                       + "and it can freeze or crash.")
+                    Text("完整安卓在模拟器中运行，用于翻译层暂时无法运行的应用。属于实验特性：速度慢，还可能卡死或崩溃。")
                 }
             }
             .listStyle(.insetGrouped)
-            .navigationTitle("Settings")
+            .navigationTitle("设置")
         }
     }
 
@@ -106,7 +103,7 @@ struct SettingsTab: View {
             HuskMark(size: 56)
             VStack(alignment: .leading, spacing: 2) {
                 Text("Husk").font(.title3.weight(.semibold))
-                Text("Version \(Bundle.main.version) · \(Bundle.main.commit)")
+                Text("版本 \(Bundle.main.version) · \(Bundle.main.commit)")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
@@ -157,12 +154,11 @@ struct LibrarySettings: View {
         Form {
             Section {
                 DetailRow(label: "Apps", value: "\(host.packages.count)", mono: false)
-                DetailRow(label: "With icons",
+                DetailRow(label: "带图标",
                           value: "\(host.packages.filter { $0.iconPath != nil }.count)",
                           mono: false)
             } footer: {
-                Text("The list is written to disk, so it is on screen before Android "
-                   + "has finished starting.")
+                Text("列表会写入磁盘，安卓还没启动完成就能看到。")
             }
 
             Section {
@@ -180,17 +176,15 @@ struct LibrarySettings: View {
                     working = true
                     Task { await host.refreshPackages(); working = false }
                 } label: {
-                    Label("Re-fetch icons", systemImage: "photo.on.rectangle")
+                    Label("重新获取图标", systemImage: "photo.on.rectangle")
                 }
                 .disabled(working || !host.isReady)
             } footer: {
-                Text("Names and icons come from Android's own launcher, which keeps "
-                   + "the version it draws. Re-fetching throws away Husk's copies and "
-                   + "asks again.")
+                Text("名称与图标来自安卓自己的启动器，并保留它显示的版本。重新获取会丢弃 Husk 的缓存并重新询问。")
             }
         }
         .huskForm()
-        .navigationTitle("Library")
+        .navigationTitle("游戏库")
     }
 }
 
@@ -204,7 +198,7 @@ final class CJKFonts: ObservableObject {
     static let fileName = "NotoSansCJK-Regular.ttc"
     static let source = URL(string: "https://github.com/notofonts/noto-cjk/raw/main/Sans/OTC/NotoSansCJK-Regular.ttc")!
     nonisolated static var directory: URL {
-        FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("Fonts", isDirectory: true)
+        FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("字体", isDirectory: true)
     }
     nonisolated static var installed: Bool { FileManager.default.fileExists(atPath: directory.appendingPathComponent(fileName).path) }
 
@@ -247,8 +241,8 @@ struct FontSettings: View {
         Form {
             Section {
                 if fonts.isInstalled {
-                    Label("Installed", systemImage: "checkmark.circle.fill").foregroundStyle(.green)
-                    Button(role: .destructive) { fonts.remove() } label: { Label("Remove", systemImage: "trash") }
+                    Label("已安装", systemImage: "checkmark.circle.fill").foregroundStyle(.green)
+                    Button(role: .destructive) { fonts.remove() } label: { Label("移除", systemImage: "trash") }
                 } else {
                     Button { fonts.download() } label: {
                         Label(fonts.downloading ? "Downloading…" : "Download (19.5 MB)", systemImage: "arrow.down.circle")
@@ -257,14 +251,13 @@ struct FontSettings: View {
                 }
                 if let failure = fonts.failure { Text(failure).font(.caption).foregroundStyle(.red) }
             } header: {
-                Text("Chinese, Japanese and Korean")
+                Text("中文、日文和韩文")
             } footer: {
-                Text("Noto Sans CJK, the font Android uses for these languages. Games and apps that draw their own text (Unity, Flutter, "
-                   + "cocos2d-x) show empty boxes for these characters without it. Takes effect the next time an app opens.")
+                Text("Noto Sans CJK，安卓用于这些语言的字体。自行绘制文字的游戏和应用（Unity、Flutter、cocos2d-x）没有它会把汉字显示为方框。下次应用打开时生效。")
             }
         }
         .huskForm()
-        .navigationTitle("Fonts")
+        .navigationTitle("字体")
     }
 }
 
@@ -281,7 +274,7 @@ struct PerformanceSettings: View {
     var body: some View {
         Form {
             Section {
-                Picker("Renderer", selection: $gpuMode) {
+                Picker("渲染器", selection: $gpuMode) {
                     Text("GPU").tag(true)
                     Text("CPU").tag(false)
                 }
@@ -291,7 +284,7 @@ struct PerformanceSettings: View {
                     HuskLog.log("ui", v ? "GPU renderer selected" : "CPU renderer selected")
                 }
             } header: {
-                Text("Renderer")
+                Text("渲染器")
             } footer: {
                 Text(gpuMode
                      ? "Android draws on the real GPU through Metal — about four times "
@@ -301,38 +294,35 @@ struct PerformanceSettings: View {
             }
 
             Section {
-                DetailRow(label: "Frame rate",
+                DetailRow(label: "帧率",
                           value: runner.fps > 0
                                  ? String(format: "%.0f fps", runner.fps) : "—")
-                DetailRow(label: "Guest screen",
+                DetailRow(label: "安卓屏幕",
                           value: "\(QemuRunner.lastGuestRes.w)×\(QemuRunner.lastGuestRes.h)")
             } header: {
-                Text("Now")
+                Text("立即")
             }
 
             Section {
-                Toggle("Sound", isOn: $sound)
+                Toggle("声音", isOn: $sound)
                     .onChange(of: sound) { v in
                         UserDefaults.standard.set(v, forKey: "husk.sound")
                         HuskLog.log("ui", v ? "sound on" : "sound off")
                     }
                 if sound {
-                    Toggle("Attach the sound device", isOn: $soundDevice)
+                    Toggle("挂载声音设备", isOn: $soundDevice)
                         .onChange(of: soundDevice) { v in
                             UserDefaults.standard.set(v, forKey: "husk.soundDevice")
                         }
                 }
             } header: {
-                Text("Sound")
+                Text("声音")
             } footer: {
-                Text("Adds a sound device. While it is attached Android cannot be "
-                   + "saved — QEMU refuses to snapshot a machine with one — so every "
-                   + "launch boots from cold. Turning it on or off costs a cold boot "
-                   + "either way.")
+                Text("会添加一个声音设备。连接期间安卓无法保存快照（QEMU 拒绝为带声音设备的机器拍快照），因此每次启动都是冷启动。无论开或关都要花一次冷启动。")
             }
         }
         .huskForm()
-        .navigationTitle("Performance")
+        .navigationTitle("性能")
     }
 }
 
@@ -370,9 +360,9 @@ struct InputSettings: View {
     var body: some View {
         Form {
             Section {
-                Picker("Screen", selection: $landscapeGuest) {
-                    Text("Portrait").tag(false)
-                    Text("Landscape").tag(true)
+                Picker("屏幕", selection: $landscapeGuest) {
+                    Text("竖屏").tag(false)
+                    Text("横屏").tag(true)
                 }
                 .pickerStyle(.segmented)
                 .disabled(customRes)
@@ -382,7 +372,7 @@ struct InputSettings: View {
                                         : "guest panel will be portrait")
                 }
             } header: {
-                Text("Screen")
+                Text("屏幕")
             } footer: {
                 Text(customRes
                      ? "A custom resolution sets the shape itself, so this does nothing "
@@ -395,7 +385,7 @@ struct InputSettings: View {
             }
 
             Section {
-                Toggle("Custom resolution", isOn: $customRes)
+                Toggle("自定义分辨率", isOn: $customRes)
                     .onChange(of: customRes) { v in
                         UserDefaults.standard.set(v, forKey: "husk.customRes")
                         store()
@@ -405,7 +395,7 @@ struct InputSettings: View {
                     }
 
                 if customRes {
-                    Picker("Preset", selection: Binding(
+                    Picker("预设", selection: Binding(
                         get: { presetIndex },
                         set: { i in
                             guard i >= 0, i < Self.presets.count else { return }
@@ -416,11 +406,11 @@ struct InputSettings: View {
                         ForEach(0..<Self.presets.count, id: \.self) { i in
                             Text(Self.presets[i].name).tag(i)
                         }
-                        Text("Custom").tag(-1)
+                        Text("自定义").tag(-1)
                     }
 
                     HStack {
-                        Text("Width")
+                        Text("宽度")
                         Spacer()
                         TextField("720", text: $widthText)
                             .keyboardType(.numberPad)
@@ -430,7 +420,7 @@ struct InputSettings: View {
                             .onChange(of: widthText) { _ in store() }
                     }
                     HStack {
-                        Text("Height")
+                        Text("高度")
                         Spacer()
                         TextField("1280", text: $heightText)
                             .keyboardType(.numberPad)
@@ -441,37 +431,30 @@ struct InputSettings: View {
                     }
 
                     if let size = effective {
-                        DetailRow(label: "Android will get",
+                        DetailRow(label: "安卓将会获得",
                                   value: "\(size.w) × \(size.h)")
                     } else {
-                        Text("Both sides must be between 240 and 2560.")
+                        Text("两侧数值必须在 240 到 2560 之间。")
                             .font(.caption).foregroundStyle(.orange)
                     }
                 }
 
-                DetailRow(label: "Running now", value: running)
+                DetailRow(label: "正在运行", value: running)
             } header: {
-                Text("Resolution")
+                Text("分辨率")
             } footer: {
-                Text("The panel is built when the machine starts, so a change costs "
-                   + "one cold boot, and the next save replaces the machine saved at "
-                   + "the old size — changing back costs another. Sizes are rounded "
-                   + "to a multiple of eight. Bigger is slower: every pixel is drawn "
-                   + "by an emulated phone. Android's density does not change with "
-                   + "the panel, so a larger one shows more rather than bigger.")
+                Text("面板在机器启动时构建，因此修改一次要花一次冷启动；下次保存会替换旧尺寸的快照——改回去又要再花一次。尺寸会取整到 8 的倍数。越大越慢：每个像素都由模拟出的手机绘制。安卓的屏幕密度不随面板改变，所以更大的面板显示更多内容而非更大的内容。")
             }
 
             Section {
-                Text("Touch is always on. The keyboard and the rotate control are "
-                   + "in the pill at the bottom of the guest's screen; a gamepad "
-                   + "and a pointer are not wired through yet.")
+                Text("触屏始终开启。键盘与旋转控件位于安卓屏幕底部的胶囊栏中；手柄与指针尚未接入。")
                     .font(.footnote).foregroundStyle(.secondary)
             } header: {
-                Text("Controls")
+                Text("控制")
             }
         }
         .huskForm()
-        .navigationTitle("Input")
+        .navigationTitle("输入")
     }
 
     /// The panel the guest actually has, which only means anything while there
@@ -502,7 +485,7 @@ struct NetworkSettings: View {
     var body: some View {
         Form {
             Section {
-                Toggle("Keep the network across saves", isOn: $keepNetwork)
+                Toggle("快照间保留网络状态", isOn: $keepNetwork)
                     .onChange(of: keepNetwork) { v in
                         UserDefaults.standard.set(v, forKey: "husk.keepNetwork")
                     }
@@ -516,16 +499,14 @@ struct NetworkSettings: View {
             }
 
             Section {
-                Text("Android reaches the internet through a virtual ethernet card "
-                   + "on QEMU's own network. Nothing on your phone's network can see "
-                   + "the guest, and the guest cannot see it.")
+                Text("安卓通过 QEMU 自有网络上的虚拟网卡访问互联网。手机网络看不到安卓系统，安卓也看不到手机网络。")
                     .font(.footnote).foregroundStyle(.secondary)
             } header: {
-                Text("How it connects")
+                Text("连接方式")
             }
         }
         .huskForm()
-        .navigationTitle("Network")
+        .navigationTitle("网络")
     }
 }
 
@@ -556,26 +537,26 @@ struct JITSettings: View {
             .listRowBackground(Color.clear)
 
             Section {
-                Picker("Method", selection: $jit.method) {
+                Picker("方式", selection: $jit.method) {
                     ForEach(JITMethod.allCases) { Text($0.title).tag($0) }
                 }
                 DetailRow(label: "StikDebug",
                           value: JITBootstrap.isStikDebugInstalled ? "installed" : "not found", mono: false)
                 DetailRow(label: "TrollStore",
                           value: JITBootstrap.isTrollStoreInstalled ? "installed" : "not found", mono: false)
-                DetailRow(label: "Installed with TrollStore",
+                DetailRow(label: "通过 TrollStore 安装",
                           value: JITBootstrap.isInstalledWithTrollStore ? "yes" : "no", mono: false)
                 DetailRow(label: "Jailbreak",
                           value: JITBootstrap.debuggedAtLaunch ? "JIT allowed for apps"
                                : JITBootstrap.isJailbroken ? "found" : "not found", mono: false)
-                DetailRow(label: "Built-in pairing", value: pairingLabel, mono: false)
+                DetailRow(label: "内置配对", value: pairingLabel, mono: false)
                 Button {
                     jit.showSetup = true
                 } label: {
-                    Label("Set up JIT", systemImage: "wand.and.stars")
+                    Label("设置 JIT", systemImage: "wand.and.stars")
                 }
             } header: {
-                Text("Other Ways to Turn On JIT")
+                Text("开启 JIT 的其他方式")
             } footer: {
                 Text(jit.method == .automatic
                      ? jit.automaticDescription + " Built-in StikJIT needs iOS 26, LocalDevVPN, and a "
@@ -588,17 +569,17 @@ struct JITSettings: View {
                 DetailRow(label: "Debugger",
                           value: JITBootstrap.isDebuggerAttached ? "attached" : "not attached",
                           mono: false)
-                DetailRow(label: "Executable memory",
+                DetailRow(label: "可执行内存",
                           value: JITBootstrap.isLive ? "granted" : "not claimed", mono: false)
                 // The two routes, named separately. Either one is enough, and
                 // when someone reports "JIT does not work" these two rows are
                 // the whole diagnosis.
-                DetailRow(label: "Trap servicer",
+                DetailRow(label: "陷阱服务进程",
                           value: husk_ios_jit_self_route() != nil ? "not needed"
                                : JITBootstrap.prewarmed ? "answering" : "not answering",
                           mono: false)
                 if let route = husk_ios_jit_self_route() {
-                    DetailRow(label: "Made by Husk",
+                    DetailRow(label: "Husk 出品",
                               value: String(cString: route) == "MAP_JIT" ? "MAP_JIT (TrollStore entitlement)" : "plain memory (debugged or jailbroken)",
                               mono: false)
                 }
@@ -609,7 +590,7 @@ struct JITSettings: View {
                                : JITBootstrap.mapJITResult.map { $0 ? "executes" : "refused" }
                                  ?? "not tested",
                           mono: false)
-                DetailRow(label: "Debugger after setup",
+                DetailRow(label: "设置后附加调试器",
                           value: JITBootstrap.detached ? "detached" : "attached",
                           mono: false)
                 if let why = JITBootstrap.lastFailure {
@@ -619,36 +600,31 @@ struct JITSettings: View {
                     Button {
                         jit.enable()
                     } label: {
-                        Label("Enable JIT with \(jit.resolvedMethod.title)", systemImage: "bolt.fill")
+                        Label("通过\(jit.resolvedMethod.title)启用 JIT", systemImage: "bolt.fill")
                     }
                     .disabled(jit.busy)
                     Button {
                         _ = JITBootstrap.requestTrollStoreAttach()
                     } label: {
-                        Label("Enable JIT with TrollStore", systemImage: "sparkles")
+                        Label("通过 TrollStore 启用 JIT", systemImage: "sparkles")
                     }
                 }
             } header: {
                 Text("JIT")
             } footer: {
-                Text("Husk needs memory it can write and then execute, which on iOS "
-                   + "takes an attached debugger. There are two ways to get it: a "
-                   + "debugger that services trap requests, or a MAP_JIT mapping, "
-                   + "which the kernel allows any debugged process. Either one is "
-                   + "enough — which is available depends on the device and the iOS "
-                   + "version, so Husk tests both rather than assuming.")
+                Text("Husk 需要既可写又可执行的内存，在 iOS 上这需要附加调试器。有两种途径：服务陷阱请求的调试器，或内核允许给已调试进程的 MAP_JIT 映射。二者有其一即可——哪种可用取决于设备与 iOS 版本，所以 Husk 两种都测试而非假设。")
             }
 
             if JITBootstrap.isInstalledWithTrollStore {
                 Section {
-                    Toggle("Turn On JIT with TrollStore at Launch", isOn: $trollStoreJIT)
+                    Toggle("启动时通过 TrollStore 开启 JIT", isOn: $trollStoreJIT)
                 } footer: {
-                    Text("Each time Husk opens without JIT, it asks TrollStore to turn it on. TrollStore's URL Scheme setting must be on.")
+                    Text("每当 Husk 在无 JIT 时打开，都会请求 TrollStore 开启它。需要先打开 TrollStore 的 URL Scheme 设置。")
                 }
             }
 
             Section {
-                Toggle("Turn On JIT at Launch", isOn: $autoJIT)
+                Toggle("启动时开启 JIT", isOn: $autoJIT)
                     .disabled(!HuskBuiltInJIT.isAvailable)
             } footer: {
                 Text(HuskBuiltInJIT.isAvailable
@@ -658,36 +634,30 @@ struct JITSettings: View {
             }
 
             Section {
-                Toggle("Start Android on launch", isOn: $autoStart)
+                Toggle("启动时开启安卓系统", isOn: $autoStart)
                     .onChange(of: autoStart) { v in
                         UserDefaults.standard.set(v, forKey: "husk.autoStart")
                     }
             } footer: {
-                Text("Boots the guest as soon as Husk opens, when JIT is available.")
+                Text("打开 Husk 后立即启动安卓系统（JIT 可用时）。")
             }
 
             Section {
-                Toggle("Keep debugger attached", isOn: $keepAttached)
+                Toggle("保持调试器连接", isOn: $keepAttached)
                     .onChange(of: keepAttached) { v in JITBootstrap.keepDebuggerAttached = v }
             } footer: {
-                Text("Off by default. Husk detaches StikDebug as soon as the "
-                   + "JIT region is held, because a debugger that iOS has suspended "
-                   + "stops the whole app the next time it is needed. Turn this on "
-                   + "only to collect StikDebug's own logs.")
+                Text("默认关闭。JIT 内存区域就位后 Husk 会立刻断开 StikDebug，因为被 iOS 挂起的调试器会在下次需要时拖住整个应用。只为收集 StikDebug 自身日志时才开启。")
             }
 
             Section {
-                Text("APKs install from the Library's + button or from the Files tab. "
-                   + "Split sets — a base APK plus its config pieces — must be picked "
-                   + "together; installing the base alone fails on missing native "
-                   + "libraries.")
+                Text("APK 从游戏库的 + 按钮或“文件”页安装。分包合集（主 APK 加配置分包）必须一起选择；只装主包会因缺少原生库而失败。")
                     .font(.footnote).foregroundStyle(.secondary)
             } header: {
-                Text("Sideloading")
+                Text("侧载")
             }
         }
         .huskForm()
-        .navigationTitle("JIT & sideload")
+        .navigationTitle("JIT 与侧载")
     }
 }
 
@@ -709,7 +679,7 @@ struct SavedMachineSettings: View {
     var body: some View {
         Form {
             Section {
-                Toggle("Save automatically", isOn: $autoSave)
+                Toggle("自动保存", isOn: $autoSave)
                     .onChange(of: autoSave) { v in
                         UserDefaults.standard.set(v, forKey: "husk.autoSave")
                         HuskLog.log("ui", v ? "automatic saving on" : "automatic saving off")
@@ -722,15 +692,12 @@ struct SavedMachineSettings: View {
                 }
                 .disabled(runner.isSavingState)
             } footer: {
-                Text("Husk restores a saved machine instead of booting it, which takes "
-                   + "seconds rather than minutes. The picture freezes while it writes. "
-                   + "With this off, nothing saves by itself — including after an "
-                   + "install.")
+                Text("Husk 直接恢复已保存的快照而不重新开机，只需几秒。写入时画面会冻结。关闭后一切都不自动保存——包括安装之后。")
             }
 
             Section {
                 Button(role: .destructive) { askWhichToDelete = true } label: {
-                    Label("Delete saved machine", systemImage: "trash")
+                    Label("删除已保存的快照", systemImage: "trash")
                 }
                 .disabled(!QemuRunner.shared.hasSnapshot)
                 if let deleteResult {
@@ -745,19 +712,17 @@ struct SavedMachineSettings: View {
             }
 
             Section {
-                Toggle("Download pre-booted snapshot", isOn: $useSnapshot)
+                Toggle("下载预启动快照", isOn: $useSnapshot)
                     .onChange(of: useSnapshot) { v in
                         UserDefaults.standard.set(v, forKey: "husk.downloadSnapshot")
                     }
             } footer: {
-                Text("Adds about 2 GB to the first download. It was captured on the "
-                   + "software renderer, so it is not used on GPU — which cold-boots "
-                   + "once and then saves its own.")
+                Text("首次下载约增加 2 GB。它截取自软件渲染器，因此 GPU 快照不使用它——GPU 会先冷启动一次，然后保存自己的快照。")
             }
 
             Section {
                 Button(role: .destructive) { askRemoveAndroid = true } label: {
-                    Label("Remove Android", systemImage: "trash.slash")
+                    Label("移除安卓系统", systemImage: "trash.slash")
                 }
                 .disabled(runner.isRunning || androidBytes == 0)
                 if let removeResult {
@@ -771,31 +736,30 @@ struct SavedMachineSettings: View {
             }
 
             Section {
-                Toggle("Ask about Android updates", isOn: $askUpdates)
+                Toggle("询问安卓系统更新", isOn: $askUpdates)
             } footer: {
-                Text("When a new Android image or snapshot is published, Husk asks once whether to download it. "
-                   + "Never asked before Android has been downloaded.")
+                Text("发布新的安卓镜像或快照时，Husk 会询问一次是否下载。下载安卓系统之前不会询问。")
             }
         }
         .huskForm()
-        .navigationTitle("Saved machine")
-        .confirmationDialog("Which saved machine?", isPresented: $askWhichToDelete,
+        .navigationTitle("已保存的快照")
+        .confirmationDialog("选择哪个快照？", isPresented: $askWhichToDelete,
                             titleVisibility: .visible) {
-            Button("GPU machine", role: .destructive) { forget("gl", "GPU") }
-            Button("Software machine", role: .destructive) { forget("sw", "software") }
-            Button("Cancel", role: .cancel) { }
+            Button("GPU 快照", role: .destructive) { forget("gl", "GPU") }
+            Button("软件快照", role: .destructive) { forget("sw", "software") }
+            Button("取消", role: .cancel) { }
         } message: {
-            Text("Android will boot from cold once, then save a new one.")
+            Text("安卓系统将先冷启动一次，然后保存新快照。")
         }
-        .confirmationDialog("Remove Android?", isPresented: $askRemoveAndroid, titleVisibility: .visible) {
-            Button("Remove Android", role: .destructive) {
+        .confirmationDialog("移除安卓系统？", isPresented: $askRemoveAndroid, titleVisibility: .visible) {
+            Button("移除安卓系统", role: .destructive) {
                 let freed = GuestImage.shared.removeAll()
                 androidBytes = GuestImage.shared.androidBytes
                 removeResult = "Freed \(ByteCountFormatter.string(fromByteCount: freed, countStyle: .file))."
             }
-            Button("Cancel", role: .cancel) { }
+            Button("取消", role: .cancel) { }
         } message: {
-            Text("Everything installed or saved inside Android is deleted. Translation layer apps keep their data.")
+            Text("安卓系统内安装或保存的所有内容都会被删除；翻译层应用会保留各自的数据。")
         }
     }
 
@@ -823,20 +787,18 @@ struct AppearanceSettings: View {
     var body: some View {
         Form {
             Section {
-                Picker("Appearance", selection: $appearance) {
+                Picker("外观", selection: $appearance) {
                     ForEach(Theme.Appearance.allCases) { Text($0.title).tag($0) }
                 }
                 .pickerStyle(.segmented)
                 .onChange(of: appearance) { v in
                     HuskLog.log("ui", "appearance: \(v.rawValue)")
                 }
-                Toggle("Holiday Decorations", isOn: $holiday)
+                Toggle("节日装饰", isOn: $holiday)
             } header: {
-                Text("Theme")
+                Text("主题")
             } footer: {
-                Text("System follows the phone: light by day, dark by night. The guest's own "
-                   + "screen stays dark either way — it is a picture of another phone. "
-                   + "Holiday decorations appear from December to early January.")
+                Text("跟随手机系统：白天浅色、夜间深色。无论哪种，安卓系统自己的屏幕始终保持暗色——那只是另一台手机的画面。节日装饰会在 12 月至 1 月初出现。")
             }
 
             Section {
@@ -854,12 +816,12 @@ struct AppearanceSettings: View {
                 }
                 .padding(.vertical, 6)
 
-                ColorPicker("Custom Colour", selection: $custom, supportsOpacity: false)
+                ColorPicker("自定义颜色", selection: $custom, supportsOpacity: false)
                     .onChange(of: custom) { theme.accentColor = $0 }
             } header: {
-                Text("Accent Colour")
+                Text("主题色")
             } footer: {
-                Text("Tints buttons, switches and selected states throughout the app.")
+                Text("为整个应用的按钮、开关和选中状态着色。")
             }
 
             Section {
@@ -890,13 +852,12 @@ struct AppearanceSettings: View {
                 }
                 .padding(.vertical, 6)
             } header: {
-                Text("App Icon")
+                Text("应用图标")
             } footer: {
-                Text("Automatic follows the system appearance — light, dark and tinted. The others pin "
-                   + "one look. iOS shows its own confirmation after a change; that alert cannot be turned off.")
+                Text("自动跟随系统外观——浅色、深色与着色；其余选项固定单一外观。更改后 iOS 会弹出自己的确认提示，无法关闭。")
             }
         }
-        .navigationTitle("Appearance")
+        .navigationTitle("外观")
         .navigationBarTitleDisplayMode(.inline)
     }
 
@@ -929,7 +890,7 @@ struct AboutSettings: View {
                 VStack(spacing: 8) {
                     HuskMark(size: 84)
                     Text("Husk").font(.title2.weight(.semibold))
-                    Text("Version \(Bundle.main.version)")
+                    Text("版本 \(Bundle.main.version)")
                         .font(.subheadline).foregroundStyle(.secondary)
                 }
                 .frame(maxWidth: .infinity)
@@ -939,8 +900,8 @@ struct AboutSettings: View {
 
             Section {
                 LabeledContent("Build", value: Bundle.main.commit)
-                LabeledContent("Guest image", value: GuestImage.imageVersion)
-                LabeledContent("Renderer",
+                LabeledContent("安卓镜像", value: GuestImage.imageVersion)
+                LabeledContent("渲染器",
                                value: runner.displayKind == .gl ? "GPU"
                                     : runner.displayKind == .software ? "CPU"
                                     : "Not started")
@@ -949,30 +910,27 @@ struct AboutSettings: View {
             Section {
                 Toggle(isOn: $devInfo) {
                     VStack(alignment: .leading, spacing: 3) {
-                        Text("Developer Info")
-                        Text("Technical detail in the Android Translation Layer screens: "
-                           + "library reports, device checks and run logs.")
+                        Text("开发者信息")
+                        Text("安卓翻译层界面的技术细节：库报告、设备检查与运行日志。")
                             .font(.caption).foregroundStyle(.secondary)
                     }
                 }
                 if devInfo {
                     NavigationLink { TLChecksView() } label: {
-                        Label("Device Checks", systemImage: "stethoscope")
+                        Label("设备检查", systemImage: "stethoscope")
                     }
                     NavigationLink { MassTestView() } label: {
-                        Label("Mass Test", systemImage: "square.stack.3d.down.forward")
+                        Label("批量测试", systemImage: "square.stack.3d.down.forward")
                     }
                 }
                 Button { showLogs = true } label: {
-                    Label("Open Console", systemImage: "terminal")
+                    Label("打开控制台", systemImage: "terminal")
                 }
             } footer: {
-                Text("Husk runs unmodified Android APKs in a real Android system on your iPhone. "
-                   + "The console shows Husk's live log, the guest's serial output and QEMU's own "
-                   + "output — the three files any problem here is diagnosed from.")
+                Text("Husk 在你 iPhone 上的真实安卓系统里运行未经修改的 APK。控制台显示 Husk 实时日志、安卓串口输出与 QEMU 自身输出——这里的问题都从这三份文件诊断。")
             }
         }
-        .navigationTitle("About")
+        .navigationTitle("关于")
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $showLogs) { LogView() }
     }

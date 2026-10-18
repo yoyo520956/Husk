@@ -13,7 +13,7 @@ settings:
     # The app and its JIT helper extension follow this together: the helper's
     # identifier has to sit under the app's. Change this, not
     # PRODUCT_BUNDLE_IDENTIFIER.
-    HUSK_BUNDLE_IDENTIFIER: com.husk.app
+    HUSK_BUNDLE_IDENTIFIER: app.jujube1760.cassava8287
     # The app's entitlements only. A signed development build has to drop
     # dynamic-codesigning, which Apple will not provision; overriding this
     # rather than CODE_SIGN_ENTITLEMENTS keeps the override off the helper.
@@ -158,78 +158,28 @@ targets:
         codeSign: true
         link: false
     preBuildScripts:
-      - name: Stage guest image
-        # The Phase 0 guest is far too large for git, so it is fetched rather than
-        # vendored, and copied into the bundle at build time.
+      - name: Stage guest resources from the official build
+        # CN build: the guest kernel, BIOS, seeds and Android side-resources come
+        # from the official 3.0 IPA, which scripts/build_cn.sh downloads into
+        # ../../official_payload ahead of xcodebuild.
         script: |
           set -e
-          GUEST="$SRCROOT/../../guests/phase0"
-          if [ ! -f "$GUEST/vmlinuz-virt" ]; then
-            echo "error: guest missing. Run ./scripts/fetch_phase0_guest.sh" >&2
+          OFFICIAL="$SRCROOT/../../official_payload/Husk.app"
+          if [ ! -d "$OFFICIAL" ]; then
+            echo "error: $OFFICIAL missing. Run scripts/build_cn.sh first." >&2
             exit 1
           fi
-          mkdir -p "$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH"
-          cp "$GUEST/vmlinuz-virt" "$GUEST/initramfs-virt" \
-             "$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/"
-
-          # QEMU loads option ROMs by name from its data directory (-L). The full
-          # pc-bios tree is 24 MB and almost entirely firmware for architectures
-          # we will never boot (sparc64, riscv, loongarch, x86, ppc), so ship only
-          # the network boot ROMs -- 1.6 MB, and the only ones -M virt asks for.
-          BIOS="$SRCROOT/../../third_party/build/qemu-10.0.12-utm/pc-bios"
-          DEST="$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/pc-bios"
-          mkdir -p "$DEST"
-          cp "$BIOS"/efi-*.rom "$BIOS"/pxe-*.rom "$DEST/" 2>/dev/null || true
-
-          # UEFI firmware for the Phase 1 guest: Debian's cloud image boots through
-          # GRUB under UEFI, so this is required. It is 64 MiB but almost all zeros,
-          # so the IPA's own zip squeezes it to about a megabyte -- cheaper than
-          # carrying a decompressor to unpack it at runtime.
-          FW="$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/edk2-aarch64-code.fd"
-          if [ ! -f "$FW" ]; then
-            bunzip2 -c "$BIOS/edk2-aarch64-code.fd.bz2" > "$FW"
-          fi
-
-          # These two qcow2 files are tiny sparse seeds (64 MiB and 16 GiB
-          # virtual). The app copies them into Documents on first launch; the
-          # pre-booted snapshot later replaces the userdata seed in place.
-          QEMU_IMG="$(command -v qemu-img || true)"
-          if [ -z "$QEMU_IMG" ]; then
-            echo "error: qemu-img is required to generate the firmware and userdata seeds" >&2
-            exit 1
-          fi
-          VARS_SEED="$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/lineage-efi-vars-seed.fd"
-          VDB_SEED="$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/lineage-vdb-seed.qcow2"
-          rm -f "$VARS_SEED" "$VDB_SEED"
-          "$QEMU_IMG" create -f qcow2 "$VARS_SEED" 64M
-          "$QEMU_IMG" create -f qcow2 "$VDB_SEED" 16G
-
-          # The parts of Android's /system that apps on the translation layer read directly: CA certificates and the system
-          # fonts (scripts/build_android_system.sh makes them from the Lineage image). Flutter apps need both.
-          SYS="$SRCROOT/../../build/android-system"
-          if [ -d "$SYS/fonts" ]; then
-            rsync -a --delete "$SYS/" "$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/android-system/"
-          else
-            echo "warning: build/android-system missing (scripts/build_android_system.sh): Flutter apps will have no system fonts" >&2
-          fi
-
-          # Husk's Dalvik runtime for Java apps (libGDX games and the like): libcore, ICU and Husk's Java framework
-          # (scripts/build_java_runtime.sh). ELF libraries and jars, so resources, not code the app links.
-          JRT="$SRCROOT/../../build/java-runtime"
-          if [ -f "$JRT/husk-framework.dex" ]; then
-            rsync -a --delete "$JRT/" "$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/java-runtime/"
-          else
-            echo "warning: build/java-runtime missing (scripts/build_java_runtime.sh): Java apps will not start" >&2
-          fi
-        # Every build: the Java runtime it copies changes without Xcode knowing (it has outputs and no inputs, so dependency
-        # analysis skipped it once they existed, and IPAs shipped a day-old runtime).
+          DEST="$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH"
+          cp "$OFFICIAL/vmlinuz-virt" "$OFFICIAL/initramfs-virt" "$DEST/"
+          cp "$OFFICIAL/edk2-aarch64-code.fd" "$DEST/"
+          cp "$OFFICIAL/lineage-efi-vars-seed.fd" "$OFFICIAL/lineage-vdb-seed.qcow2" "$DEST/"
+          mkdir -p "$DEST/pc-bios"
+          cp "$OFFICIAL/pc-bios/"*.rom "$DEST/pc-bios/" 2>/dev/null || true
+          rsync -a --delete "$OFFICIAL/android-system/" "$DEST/android-system/"
+          rsync -a --delete "$OFFICIAL/java-runtime/" "$DEST/java-runtime/"
         basedOnDependencyAnalysis: false
         outputFiles:
           - "$(BUILT_PRODUCTS_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/vmlinuz-virt"
-          - "$(BUILT_PRODUCTS_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/initramfs-virt"
-          - "$(BUILT_PRODUCTS_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/edk2-aarch64-code.fd"
-          - "$(BUILT_PRODUCTS_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/lineage-efi-vars-seed.fd"
-          - "$(BUILT_PRODUCTS_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/lineage-vdb-seed.qcow2"
 
     postBuildScripts:
       - name: Embed StikJIT
@@ -277,7 +227,7 @@ targets:
       - path: HuskJITHelper
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: $(HUSK_BUNDLE_IDENTIFIER).JITHelper
+        PRODUCT_BUNDLE_IDENTIFIER: $(HUSK_BUNDLE_IDENTIFIER)
         INFOPLIST_FILE: HuskJITHelper/Info.plist
         GENERATE_INFOPLIST_FILE: NO
         APPLICATION_EXTENSION_API_ONLY: YES
@@ -304,7 +254,7 @@ targets:
       - path: Shared
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: $(HUSK_BUNDLE_IDENTIFIER).Downloads
+        PRODUCT_BUNDLE_IDENTIFIER: $(HUSK_BUNDLE_IDENTIFIER)
         INFOPLIST_FILE: HuskDownloadsWidget/Info.plist
         GENERATE_INFOPLIST_FILE: NO
         APPLICATION_EXTENSION_API_ONLY: YES

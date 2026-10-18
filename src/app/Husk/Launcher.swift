@@ -30,7 +30,7 @@ enum LibraryItem: Identifiable, Hashable {
         switch self {
         case .game(let g): return g.label
         case .app(let p): return p.label
-        case .android: return "Android"
+        case .android: return "安卓系统"
         case .ps4(let g): return g.title
         }
     }
@@ -280,7 +280,7 @@ struct HomeView: View {
                             .background(Console.card, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
                         }
                         .buttonStyle(CardButtonStyle())
-                        .accessibilityLabel("Open the Library")
+                        .accessibilityLabel("打开游戏库")
                     }
                 }
                 .padding(.horizontal, 20)
@@ -325,7 +325,7 @@ struct HomeView: View {
             }
             HStack(spacing: 10) {
                 Button { Launcher.play(item) { router.home.append($0) } } label: {
-                    Label(item.isGame ? "Play" : "Open", systemImage: item.isGame ? "play.fill" : "arrow.up.forward.app.fill")
+                    Label(item.isGame ? "Play" : "打开", systemImage: item.isGame ? "play.fill" : "arrow.up.forward.app.fill")
                 }
                 .buttonStyle(ConsolePlayButtonStyle())
                 .accessibilityLabel((item.isGame ? "Play " : "Open ") + item.title)
@@ -347,7 +347,7 @@ struct HomeView: View {
             .map(\.0)
         if !added.isEmpty {
             VStack(alignment: .leading, spacing: 12) {
-                Text("Recently added")
+                Text("最近添加")
                     .font(.system(size: 20, weight: .bold))
                     .foregroundStyle(Console.text)
                     .padding(.horizontal, 20)
@@ -381,7 +381,7 @@ struct HomeView: View {
                     .font(.subheadline)
                     .foregroundStyle(Console.textDim)
                     .fixedSize(horizontal: false, vertical: true)
-                Button("Show All") { router.platform = .all }
+                Button("显示全部") { router.platform = .all }
                     .buttonStyle(ConsolePlayButtonStyle())
                     .padding(.top, 6)
             }
@@ -459,7 +459,7 @@ private struct ShelfTile: View {
     }
 }
 
-/// A wide card in "Recently added": the item's picture, its icon and its name.
+/// A wide card in "最近添加": the item's picture, its icon and its name.
 private struct WideCard: View {
     let item: LibraryItem
 
@@ -522,7 +522,7 @@ private struct HomeMoreButton: View {
                 .frame(width: 52, height: 52)
                 .background(Console.raised, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
         }
-        .accessibilityLabel("More for \(item.title)")
+        .accessibilityLabel("\(item.title) 的更多内容")
         .removeItemDialog(item, isPresented: $confirmRemove)
     }
 }
@@ -535,15 +535,15 @@ private struct HomeAvatar: View {
 
     var body: some View {
         Menu {
-            Button { router.addSomething() } label: { Label("Add a Game or App", systemImage: "plus") }
-            Button { router.showDownloads = true } label: { Label("Downloads", systemImage: "arrow.down.circle") }
-            Button { router.showFiles = true } label: { Label("Files", systemImage: "folder") }
+            Button { router.addSomething() } label: { Label("添加游戏或应用", systemImage: "plus") }
+            Button { router.showDownloads = true } label: { Label("下载", systemImage: "arrow.down.circle") }
+            Button { router.showFiles = true } label: { Label("文件", systemImage: "folder") }
             Divider()
             Button { JITNotice.toggle(jit) } label: {
                 Label(Launcher.jitOn ? "JIT On (\(JITNotice.via(jit)))" : "Turn On JIT", systemImage: "bolt.fill")
             }
             .disabled(jit.busy)
-            Button { router.tab = .settings } label: { Label("Settings", systemImage: "gearshape") }
+            Button { router.tab = .settings } label: { Label("设置", systemImage: "gearshape") }
         } label: {
             ZStack(alignment: .topTrailing) {
                 Image(systemName: "person.fill")
@@ -559,7 +559,7 @@ private struct HomeAvatar: View {
                     .offset(x: 1, y: -1)
             }
         }
-        .accessibilityLabel("Menu")
+        .accessibilityLabel("菜单")
     }
 }
 
@@ -586,13 +586,13 @@ private struct JITNotice: View {
                         .font(.system(size: 14, weight: .bold))
                         .foregroundStyle(.orange)
                     VStack(alignment: .leading, spacing: 1) {
-                        Text("JIT is off").font(.system(size: 14, weight: .semibold)).foregroundStyle(.white)
+                        Text("JIT 未开启").font(.system(size: 14, weight: .semibold)).foregroundStyle(.white)
                         Text(jit.busy ? (jit.status ?? "Turning on…") : "Games need it. Tap to turn it on.")
                             .font(.system(size: 12)).foregroundStyle(Console.textDim).lineLimit(1)
                     }
                     Spacer(minLength: 0)
                     if jit.busy { ProgressView() } else {
-                        Text("Turn On")
+                        Text("开启")
                             .font(.system(size: 13, weight: .bold))
                             .foregroundStyle(.black)
                             .padding(.horizontal, 12).frame(height: 28)
@@ -665,17 +665,15 @@ private struct WelcomeCard: View {
                 .frame(width: 60, height: 60)
                 .background(Console.raised, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
             VStack(alignment: .leading, spacing: 6) {
-                Text("Add your first game")
+                Text("添加你的第一个游戏")
                     .font(.system(size: 26, weight: .heavy))
                     .foregroundStyle(Console.text)
-                Text("Pick an APK or a bundle (.xapk, .apkm, .apks), or share one to Husk from Files or Safari. Games run "
-                   + "straight on your iPhone. Other apps run inside Android. PS4 games are extracted folders put in "
-                   + "Husk's PS4 Games folder.")
+                Text("选择 APK 或整合包（.xapk、.apkm、.apks），或从“文件”或 Safari 分享给 Husk。游戏在 iPhone 上直接运行，其他应用在安卓内运行，PS4 游戏是解压后放进 Husk 的 PS4 Games 文件夹。")
                     .font(.subheadline)
                     .foregroundStyle(Console.textDim)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            Button { router.addSomething() } label: { Text("Add a Game or App") }
+            Button { router.addSomething() } label: { Text("添加游戏或应用") }
                 .buttonStyle(ConsolePlayButtonStyle())
         }
         .padding(20)
@@ -763,7 +761,7 @@ struct AndroidMark: View {
 /// "Opens inside Android".
 struct AndroidBadge: View {
     var body: some View {
-        Text("ANDROID")
+        Text("安卓")
             .font(.system(size: 8, weight: .heavy, design: .rounded))
             .tracking(0.4)
             .foregroundStyle(Color(red: 0.03, green: 0.13, blue: 0.06))
@@ -798,7 +796,7 @@ struct LibraryScreen: View {
                         PlatformChips(selection: $router.platform)
                         Spacer(minLength: 0)
                         Menu {
-                            Picker("Show", selection: $router.libraryFilter) {
+                            Picker("显示", selection: $router.libraryFilter) {
                                 ForEach(LibraryFilter.allCases) { Text($0.title).tag($0) }
                             }
                         } label: {
@@ -808,9 +806,9 @@ struct LibraryScreen: View {
                                 .foregroundStyle(router.libraryFilter == .all ? Console.textDim : Theme.accent)
                                 .frame(width: 36, height: 36)
                         }
-                        .accessibilityLabel("Games or Apps")
+                        .accessibilityLabel("游戏或应用")
                     }
-                    SearchField(text: $query, prompt: "Search games and apps")
+                    SearchField(text: $query, prompt: "搜索游戏和应用")
                     if let busy = store.busy { BusyStrip(text: busy) }
                     if let busy = host.busy { BusyStrip(text: busy) }
 
@@ -830,7 +828,7 @@ struct LibraryScreen: View {
                                     : nil)
                     }
                     if router.platform != .ps4 {
-                        section("Android", android, empty: query.isEmpty && router.libraryFilter == .all ? "Add a game with the + button." : nil)
+                        section("安卓系统", android, empty: query.isEmpty && router.libraryFilter == .all ? "Add a game with the + button." : nil)
                     }
                     if !query.isEmpty, items.isEmpty { NoResults(query: query) }
                 }
@@ -841,12 +839,12 @@ struct LibraryScreen: View {
             .huskHideScrollIndicators()
             .huskDismissKeyboardOnScroll()
             .background(Console.page.ignoresSafeArea())
-            .navigationTitle("Library")
+            .navigationTitle("游戏库")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button { router.addSomething() } label: { Image(systemName: "plus") }
-                        .accessibilityLabel("Add a Game or App")
+                        .accessibilityLabel("添加游戏或应用")
                 }
             }
             .libraryDestinations()
@@ -983,18 +981,18 @@ struct LibraryItemActions: View {
 
     var body: some View {
         Button { Launcher.play(item, push: push) } label: {
-            Label(item.isGame ? "Play" : "Open", systemImage: item.isGame ? "play.fill" : "arrow.up.forward.app")
+            Label(item.isGame ? "Play" : "打开", systemImage: item.isGame ? "play.fill" : "arrow.up.forward.app")
         }
         if showsDetails, !item.runsInAndroid {
-            Button { push(item.route) } label: { Label("Details", systemImage: "info.circle") }
+            Button { push(item.route) } label: { Label("详情", systemImage: "info.circle") }
         }
         if case .game(let g) = item {
-            Button { push(.gameSettings(g.id)) } label: { Label("Settings", systemImage: "slider.horizontal.3") }
+            Button { push(.gameSettings(g.id)) } label: { Label("设置", systemImage: "slider.horizontal.3") }
             Divider()
-            Button(role: .destructive) { askRemove() } label: { Label("Remove", systemImage: "trash") }
+            Button(role: .destructive) { askRemove() } label: { Label("移除", systemImage: "trash") }
         } else if case .app(let p) = item, AndroidHost.shared.isReady {
             Divider()
-            Button(role: .destructive) { askRemove() } label: { Label("Uninstall", systemImage: "trash") }
+            Button(role: .destructive) { askRemove() } label: { Label("卸载", systemImage: "trash") }
                 .accessibilityHint("Removes \(p.label) from Android")
         }
     }
@@ -1020,7 +1018,7 @@ private struct RemoveItemDialog: ViewModifier {
             }
     }
 
-    private var removeVerb: String { if case .app = item { return "Uninstall" }; return "Remove" }
+    private var removeVerb: String { if case .app = item { return "卸载" }; return "移除" }
     private var removeTitle: String { "\(removeVerb) \(item.title)?" }
     private var removeMessage: String {
         if case .app = item { return "It is uninstalled from Android, with its data." }
@@ -1106,14 +1104,14 @@ struct SearchField: View {
                         Image(systemName: "xmark.circle.fill").foregroundStyle(.tertiary)
                     }
                     .buttonStyle(.plain)
-                    .accessibilityLabel("Clear")
+                    .accessibilityLabel("清空")
                 }
             }
             .padding(.horizontal, 10)
             .frame(height: 38)
             .background(Color(uiColor: .tertiarySystemFill), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
             if focused {
-                Button("Cancel") { text = ""; focused = false }
+                Button("取消") { text = ""; focused = false }
                     .transition(.move(edge: .trailing).combined(with: .opacity))
             }
         }
@@ -1127,8 +1125,8 @@ struct NoResults: View {
     var body: some View {
         VStack(spacing: 8) {
             Image(systemName: "magnifyingglass").font(.system(size: 28, weight: .light)).foregroundStyle(.secondary)
-            Text("No Results").font(.headline)
-            Text("Nothing here is called “\(query)”.").font(.subheadline).foregroundStyle(.secondary)
+            Text("无结果").font(.headline)
+            Text("这里没有叫“\(query)”的内容。").font(.subheadline).foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 48)
@@ -1174,6 +1172,6 @@ private struct LibraryRouteView: View {
 
 private struct GoneView: View {
     var body: some View {
-        Text("This was removed.").foregroundStyle(.secondary).frame(maxWidth: .infinity, maxHeight: .infinity)
+        Text("已被移除。").foregroundStyle(.secondary).frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

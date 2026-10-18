@@ -2137,12 +2137,39 @@ dvm_native_fn dvm_intrinsic(const char *cls, const char *name, const char *sig)
 /* Intrinsics for methods that have bytecode too, but which ART runs natively: much faster, same answers. */
 dvm_native_fn dvm_fast_path(const char *cls, const char *name, const char *sig);
 extern bool tl_dvm_load_library(const char *name_or_path);
+/* Protection and analytics SDKs whose native code self-decrypts and verifies
+   itself cannot run inside the translation layer: their startup faults
+   (SIGSEGV inside the decryptor) kill the whole app. Skipping the library and
+   reporting success lets most apps continue without them (device ids fall
+   back, anti-tamper stays silent). List is lowercase; compare folded. */
+static int dvm_risky_protection_lib(const char *name)
+{
+    static const char *const marks[] = {
+        "msaoaidsec",                      /* MSA OAID: self-decrypting, faults in emulators (verified) */
+        "secshell", "dexhelper", "secneo", /* Bangcle */
+        "jiagu",                           /* 360 hardening */
+        "nesec",                           /* NetEase Yidun */
+        "nqshield",                        /* NQ Shield */
+        "tprt",                            /* Tencent TP */
+        "ijiami",                          /* Ijiami */
+    };
+    if (!name) return 0;
+    char low[300]; size_t i = 0;
+    for (; i + 1 < sizeof(low) && name[i]; i++)
+        low[i] = (char)((name[i] >= 'A' && name[i] <= 'Z') ? name[i] + 32 : name[i]);
+    low[i] = 0;
+    for (size_t k = 0; k < sizeof(marks) / sizeof(marks[0]); k++)
+        if (strstr(low, marks[k])) return 1;
+    return 0;
+}
+
 NAT(System_loadLibrary)
 {
     (void)self; (void)ret;
     const char *n = tl_jni_string(a[0].l);
     if (!n) return npe("libname");
     char base[300]; snprintf(base, sizeof(base), "lib%s.so", n);
+    if (dvm_risky_protection_lib(base)) { tl_log_line("dvm: skipping protection library %s (would fault the app)", base); return !tl_jni_pending(); }
     if (!tl_dvm_load_library(base)) return dvm_throw("java/lang/UnsatisfiedLinkError", "dlopen failed: library \"%s\" not found", base);
     return !tl_jni_pending();
 }
@@ -2151,6 +2178,7 @@ NAT(System_load)
     (void)self; (void)ret;
     const char *n = tl_jni_string(a[0].l);
     if (!n) return npe("path");
+    if (dvm_risky_protection_lib(n)) { tl_log_line("dvm: skipping protection library %s (would fault the app)", n); return !tl_jni_pending(); }
     if (!tl_dvm_load_library(n)) return dvm_throw("java/lang/UnsatisfiedLinkError", "dlopen failed: library \"%s\" not found", n);
     return !tl_jni_pending();
 }

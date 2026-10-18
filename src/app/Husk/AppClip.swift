@@ -4,7 +4,7 @@ import SafariServices
 import SwiftUI
 import UIKit
 
-/// "Generate App Clip": a home-screen icon for one game that opens it straight from the home screen.
+/// "生成 App Clip": a home-screen icon for one game that opens it straight from the home screen.
 ///
 /// iOS puts an icon on the home screen from a configuration profile's Web Clip payload. Its URL here is
 /// husk://open_app?unique_identifier=<id>, which brings Husk up on that game and starts it. The profile is made here, served from

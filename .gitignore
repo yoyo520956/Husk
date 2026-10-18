@@ -22,3 +22,17 @@ third_party/gpu/
 .build/
 *.ipa
 .freebuff/
+
+# CN build workspace
+extracted/
+official_payload/
+*.ipa
+chains.txt
+ui_list.txt
+ui_left.txt
+ui_left2.txt
+HUSK_STATE.md
+patch_tl.py
+zh_map*.py
+zh_apply*.py
+dump_groups.py

@@ -18,13 +18,13 @@ struct FilesTab: View {
 
     var body: some View {
         NavigationStack(path: $router.files) {
-            DirectoryView(path: Self.root, title: "Files")
+            DirectoryView(path: Self.root, title: "文件")
                 .huskDestination(for: String.self) { path in
                     DirectoryView(path: path,
                                   title: (path as NSString).lastPathComponent)
                 }
                 .toolbar {
-                    ToolbarItem(placement: .cancellationAction) { Button("Done") { dismiss() } }
+                    ToolbarItem(placement: .cancellationAction) { Button("完成") { dismiss() } }
                 }
         }
     }
@@ -64,10 +64,10 @@ struct DirectoryView: View {
             if loading && entries.isEmpty {
                 ProgressView()
             } else if let failure {
-                EmptyState(title: "Cannot Read This Folder", message: failure, systemImage: "lock")
+                EmptyState(title: "无法读取此文件夹", message: failure, systemImage: "lock")
             } else if entries.isEmpty {
-                EmptyState(title: "Empty", message: "Nothing is in this folder yet.",
-                           systemImage: "folder", actionTitle: "Import Files",
+                EmptyState(title: "Empty", message: "此文件夹还没有内容。",
+                           systemImage: "folder", actionTitle: "导入文件",
                            action: { showImportSheet = true })
             }
         }
@@ -75,8 +75,8 @@ struct DirectoryView: View {
         .navigationBarTitleDisplayMode(path == FilesTab.root ? .large : .inline)
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
-                Button { load() } label: { Label("Refresh", systemImage: "arrow.clockwise") }
-                Button { showImportSheet = true } label: { Label("Import", systemImage: "plus") }
+                Button { load() } label: { Label("刷新", systemImage: "arrow.clockwise") }
+                Button { showImportSheet = true } label: { Label("导入", systemImage: "plus") }
             }
         }
         .sheet(isPresented: $showImportSheet) {
@@ -90,13 +90,13 @@ struct DirectoryView: View {
                             isPresented: Binding(get: { installing != nil },
                                                  set: { if !$0 { installing = nil } }),
                             titleVisibility: .visible) {
-            Button("Install") {
+            Button("安装") {
                 if let apk = installing { host.installFromGuest(apk.path, name: apk.name) }
                 installing = nil
             }
-            Button("Cancel", role: .cancel) { installing = nil }
+            Button("取消", role: .cancel) { installing = nil }
         } message: {
-            Text("Android installs it from where it already is — nothing is copied.")
+            Text("安卓系统从原位置直接安装——不会复制任何内容。")
         }
         .task(id: path) { load() }
         .refreshable { load() }
@@ -142,9 +142,9 @@ struct DirectoryView: View {
     private func storage(_ s: (free: Int64, total: Int64)) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text("Storage")
+                Text("存储")
                 Spacer()
-                Text("\(AppDetailView.bytes(s.total - s.free)) of \(AppDetailView.bytes(s.total))")
+                Text("共 \(AppDetailView.bytes(s.total))，剩余 \(AppDetailView.bytes(s.total - s.free))")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
@@ -220,9 +220,8 @@ struct ImportSheet: View {
                     Image(systemName: "doc.badge.plus")
                         .font(.system(size: 34, weight: .light))
                         .foregroundStyle(Color.accentColor)
-                    Text("Import Files").font(.headline)
-                    Text("They go to \((destination as NSString).lastPathComponent). "
-                       + "Unmodified APKs install from here too.")
+                    Text("导入文件").font(.headline)
+                    Text("它们会进入 \((destination as NSString).lastPathComponent)。未修改的 APK 也能从这里安装。")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
@@ -231,17 +230,17 @@ struct ImportSheet: View {
                 .padding(.vertical, 24)
                 .huskCard()
 
-                Button("Browse Files", action: onBrowse)
+                Button("浏览文件", action: onBrowse)
                     .buttonStyle(.borderedProminent)
                     .controlSize(.large)
                 Spacer(minLength: 0)
             }
             .padding(16)
             .background(Theme.backdrop)
-            .navigationTitle("Import")
+            .navigationTitle("导入")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) { Button("Done") { dismiss() } }
+                ToolbarItem(placement: .topBarTrailing) { Button("完成") { dismiss() } }
             }
         }
     }

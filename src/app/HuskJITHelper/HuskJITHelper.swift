@@ -21,7 +21,7 @@ private enum HuskJITWork {
             try manager.createDirectory(at: root, withIntermediateDirectories: true)
             if request.operation == .resetDDI {
                 try StikJIT.resetCachedDDI(at: paths)
-                return .init(success: true, message: "Developer Disk Image cache reset.",
+                return .init(success: true, message: "开发者磁盘映像缓存已重置。",
                              txmPresent: StikJIT.isTXMPresent)
             }
 
@@ -41,12 +41,12 @@ private enum HuskJITWork {
                 switch readiness {
                 case .ready(let security):
                     return .init(success: true,
-                                 message: "LocalDevVPN is reachable and the Developer Disk Image is ready.",
+                                 message: "LocalDevVPN 可达，开发者磁盘映像就绪。",
                                  txmPresent: security.isTXMPresent)
                 case .unreachable(let reason), .preparationFailed(let reason):
                     return .init(success: false, message: reason, txmPresent: StikJIT.isTXMPresent)
                 @unknown default:
-                    return .init(success: false, message: "StikJIT returned an unknown preparation state.",
+                    return .init(success: false, message: "StikJIT 返回了未知的准备状态。",
                                  txmPresent: StikJIT.isTXMPresent)
                 }
             case .enable:
@@ -64,7 +64,7 @@ private enum HuskJITWork {
                     forceScript: true,
                     preparationProgress: { NSLog("[HuskJIT] prepare: %@", String(describing: $0)) },
                     progress: { NSLog("[HuskJIT] %@", $0) })
-                return .init(success: true, message: "Husk detached cleanly from its built-in JIT helper.",
+                return .init(success: true, message: "Husk 已与其内置 JIT 助手正常断开。",
                              txmPresent: StikJIT.isTXMPresent)
             case .resetDDI:
                 preconditionFailure("Handled above")
@@ -90,7 +90,7 @@ final class HuskJITHelperHandler: NSObject, NSExtensionRequestHandling {
             if let data, let request = try? JSONDecoder().decode(HuskJITRequest.self, from: data) {
                 response = HuskJITWork.handle(request)
             } else {
-                response = .init(success: false, message: "Husk's JIT helper received no request.",
+                response = .init(success: false, message: "Husk 的 JIT 助手未收到请求。",
                                  txmPresent: nil)
             }
             let item = NSExtensionItem()

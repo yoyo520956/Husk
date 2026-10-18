@@ -305,7 +305,7 @@ struct MassTestView: View {
                 if let files {
                     Text(files.isEmpty ? "The DeveloperTesting folder is empty." : "\(files.count) apps in DeveloperTesting.")
                 } else {
-                    Text("Make a folder named DeveloperTesting in Husk's folder (Files > On My iPhone > Husk) and put the APKs to test in it: an APK each, or a folder per app with its base and split APKs.")
+                    Text("在 Husk 的文件夹（文件 > 我的 iPhone > Husk）里新建名为 DeveloperTesting 的文件夹，把要测的 APK 放进去：每个 APK 单独放，或每个应用一个文件夹（含主包与分包 APK）。")
                         .foregroundStyle(.secondary)
                 }
                 if let s = test.state {
@@ -313,23 +313,23 @@ struct MassTestView: View {
                 }
                 if !test.status.isEmpty { Text(test.status).font(.caption).foregroundStyle(.secondary) }
             } footer: {
-                Text("Each app is played once JIT is on, watched for 15 seconds, and written down; then Husk closes. Open Husk again for the next one. At the end the results file is offered to share.")
+                Text("JIT 开启后每个应用会被启动一次，观察 15 秒并记录，随后 Husk 自动关闭；再次打开即可测试下一个。结束后可分享结果文件。")
             }
             Section {
                 if test.active {
-                    Button("Stop", role: .destructive) { test.stop() }
+                    Button("停止", role: .destructive) { test.stop() }
                 } else {
-                    Button("Start Mass Test") { test.start() }.disabled((files ?? []).isEmpty)
+                    Button("开始批量测试") { test.start() }.disabled((files ?? []).isEmpty)
                     if !test.failures.isEmpty {
-                        Button("Retest \(test.failures.count) Failures") { test.retestFailures() }
+                        Button("重测 \(test.failures.count) 个失败项") { test.retestFailures() }
                     }
                 }
                 if FileManager.default.fileExists(atPath: MassTest.resultsURL.path) {
-                    Button("Share Results") { test.writeReport(); share = true }
+                    Button("分享结果") { test.writeReport(); share = true }
                 }
             }
         }
-        .navigationTitle("Mass Test")
+        .navigationTitle("批量测试")
         .huskForm()
         .sheet(isPresented: $share) { ShareSheet(items: [MassTest.resultsURL]) }
     }

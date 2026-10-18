@@ -37,7 +37,7 @@ enum PlatformFilter: String, CaseIterable, Identifiable {
     var title: String {
         switch self {
         case .all: return "All"
-        case .android: return "Android"
+        case .android: return "安卓系统"
         case .ps4: return "PS4"
         }
     }
@@ -70,8 +70,8 @@ extension LibraryItem {
         switch self {
         case .ps4: return "PlayStation 4"
         case .app: return "Android · Emulator"
-        case .android: return "Android"
-        case .game: return "Android"
+        case .android: return "安卓系统"
+        case .game: return "安卓系统"
         }
     }
 
@@ -102,7 +102,7 @@ extension LibraryItem {
         return (isGame ? "Last played " : "Last opened ") + ago
     }
 
-    /// When it was added to Husk, from its folder: what "Recently added" sorts by. Read once per item and kept, since Home
+    /// When it was added to Husk, from its folder: what "最近添加" sorts by. Read once per item and kept, since Home
     /// redraws often and a folder's creation date does not change.
     @MainActor var addedDate: Date? {
         if let known = AddedDates.cache[id] { return known }

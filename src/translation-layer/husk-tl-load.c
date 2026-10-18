@@ -1515,6 +1515,27 @@ static void attempt_stop(int code)
     pthread_mutex_unlock(&g_log_mutex);
 }
 
+/* The guest asked to die (exit, _exit, abort, assert, raise, kill on its own
+   process): end this attempt instead of taking the whole app down. Runs on a
+   guest thread, so the thread leaves here; the run is marked finished and the
+   UI shows the game as stopped. Hardening SDKs and licence checks that would
+   otherwise crash Husk end up here, and most apps keep running without them. */
+void husk_tl_attempt_guest_exit(int status)
+{
+    tl_log_line("attempt: the guest asked to exit (%d) -- ending the run, not the app", status);
+    attempt_stop(0);
+    pthread_exit(NULL);
+}
+
+/* Wire the bionic shim's exit hook once, for the life of the process: the
+   Unity driver replaces it with its own variant when a Unity game starts,
+   and the two share the same "end the guest, keep the app" contract. */
+__attribute__((constructor)) static void husk_tl_exit_hook_init(void)
+{
+    extern void (*tl_guest_exit_hook)(int status);
+    tl_guest_exit_hook = husk_tl_attempt_guest_exit;
+}
+
 /* The lifecycle driver. Budget-limited, stop-flag aware, and every guest
  * callback is reached through the activity struct it was handed. Input
  * reaches the guest through the AInputQueue it was given, not through

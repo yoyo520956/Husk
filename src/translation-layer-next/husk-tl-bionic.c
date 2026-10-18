@@ -395,6 +395,8 @@ static void guest_abort(const char *why)
     char where[200];
     describe_caller(__builtin_return_address(0), where, sizeof(where));
     tl_log_line("bionic: guest abort (%s) at %s", why, where);
+    /* A guest abort ends the guest, not the app: hardening SDKs abort freely. */
+    if (tl_guest_exit_hook) tl_guest_exit_hook(128 + 6);
     abort();
 }
 
@@ -403,6 +405,8 @@ static void bionic_abort(void)
     char where[200];
     describe_caller(__builtin_return_address(0), where, sizeof(where));
     tl_log_line("bionic: abort() called from %s", where);
+    /* Same contract as exit(): the hook ends the guest, never returns. */
+    if (tl_guest_exit_hook) tl_guest_exit_hook(128 + 6);
     abort();
 }
 
@@ -419,6 +423,17 @@ static void bionic_exit(int status)
     exit(status);
 }
 
+/* _exit and _Exit bypass atexit and the hook path exit() takes; route them
+   through the hook first, so a guest calling _exit ends the guest, not the app. */
+static void bionic__exit(int status)
+{
+    char where[200];
+    describe_caller(__builtin_return_address(0), where, sizeof(where));
+    tl_log_line("bionic: _exit(%d) called from %s", status, where);
+    if (tl_guest_exit_hook) tl_guest_exit_hook(status);
+    _exit(status);
+}
+
 static void bionic___stack_chk_fail(void) { guest_abort("stack smashing detected"); }
 
 static void bionic___assert2(const char *file, int line, const char *func, const char *expr)
@@ -426,6 +441,7 @@ static void bionic___assert2(const char *file, int line, const char *func, const
     char where[200];
     describe_caller(__builtin_return_address(0), where, sizeof(where));
     tl_log_line("bionic: assertion failed: %s:%d: %s: %s (from %s)", file, line, func ? func : "?", expr, where);
+    if (tl_guest_exit_hook) tl_guest_exit_hook(128 + 6);
     abort();
 }
 
@@ -790,7 +806,7 @@ const tl_bionic_entry tl_tab_core[] = {
     TL_WRAP("closelog", bionic_closelog),
     TL_WRAP("abort", bionic_abort),
     TL_WRAP("exit", bionic_exit),
-    TL_DIRECT(_exit), TL_DIRECT(_Exit),
+    TL_WRAP("_exit", bionic__exit), TL_WRAP("_Exit", bionic__exit),
     TL_WRAP("__stack_chk_fail", bionic___stack_chk_fail),
     TL_WRAP("__assert2", bionic___assert2),
     TL_WRAP("android_set_abort_message", bionic_android_set_abort_message),

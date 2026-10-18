@@ -17,8 +17,8 @@ struct DownloadsTab: View {
                 Section {
                     if downloads.jobs.isEmpty {
                         VStack(alignment: .leading, spacing: 6) {
-                            Text("No downloads").font(.headline)
-                            Text("Add a link to an APK or a file, or the address a computer gives you when it shares a folder.")
+                            Text("暂无下载").font(.headline)
+                            Text("添加 APK 或文件的链接，或电脑共享文件夹时显示的地址。")
                                 .font(.subheadline).foregroundStyle(.secondary)
                         }
                         .padding(.vertical, 6)
@@ -29,45 +29,45 @@ struct DownloadsTab: View {
                             VStack(alignment: .leading, spacing: 6) {
                                 Text(store.downloadTitles[pkg] ?? pkg).font(.headline).lineLimit(1)
                                 ProgressView(value: store.downloadProgress[pkg] ?? 0)
-                                Text("From the Store").font(.caption).foregroundStyle(.secondary)
+                                Text("来自商店").font(.caption).foregroundStyle(.secondary)
                             }
                             Button(role: .destructive) { store.cancelDownload(pkg) } label: {
                                 Image(systemName: "xmark.circle.fill").font(.title2)
                             }
                             .buttonStyle(.borderless)
-                            .accessibilityLabel("Cancel Download")
+                            .accessibilityLabel("取消下载")
                         }
                         .padding(.vertical, 4)
                     }
                     ForEach(downloads.jobs) { job in
                         DownloadRow(job: job, speed: downloads.speed)
                             .swipeActions {
-                                Button(role: .destructive) { downloads.remove(job.id) } label: { Label("Remove", systemImage: "trash") }
+                                Button(role: .destructive) { downloads.remove(job.id) } label: { Label("移除", systemImage: "trash") }
                             }
                     }
                 } header: {
                     HStack {
-                        Text("Downloads")
+                        Text("下载")
                         Spacer()
                         if downloads.jobs.contains(where: \.complete) {
-                            Button("Clear Finished") { downloads.clearFinished() }.font(.caption).textCase(nil)
+                            Button("清除已完成") { downloads.clearFinished() }.font(.caption).textCase(nil)
                         }
                     }
                 } footer: {
                     VStack(alignment: .leading, spacing: 6) {
                         if downloads.liveActivitiesOff {
-                            Text("Live Activities are off for Husk, so downloads don't show on the Lock Screen or in the Dynamic Island. Turn them on in Settings › Husk › Live Activities.")
+                            Text("Husk 的实时活动已关闭，下载不会显示在锁屏或灵动岛上。可在 设置 › Husk › 实时活动 中开启。")
                                 .foregroundStyle(.orange)
                         }
-                        if let free = Downloads.freeSpace() { Text("\(Downloads.bytes(free)) free on this device.") }
+                        if let free = Downloads.freeSpace() { Text("本设备剩余 \(Downloads.bytes(free))。") }
                     }
                 }
             }
-            .navigationTitle("Downloads")
+            .navigationTitle("下载")
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) { Button("Done") { dismiss() } }
+                ToolbarItem(placement: .cancellationAction) { Button("完成") { dismiss() } }
                 ToolbarItem(placement: .primaryAction) {
-                    Button { adding = true } label: { Label("Add", systemImage: "plus") }
+                    Button { adding = true } label: { Label("添加", systemImage: "plus") }
                 }
             }
             .sheet(isPresented: $adding) { AddDownloadSheet() }
@@ -75,23 +75,23 @@ struct DownloadsTab: View {
     }
 
     @ViewBuilder private var updatesSection: some View {
-        Section("Updates") {
+        Section("更新") {
             if let release = updates.available {
                 HStack {
                     Label("Husk \(release.version)", systemImage: "arrow.down.app.fill")
                     Spacer()
-                    Button("View") { UIApplication.shared.open(release.page) }.buttonStyle(.bordered)
+                    Button("查看") { UIApplication.shared.open(release.page) }.buttonStyle(.bordered)
                 }
             }
             if guest.update.isSomething {
                 HStack {
                     Label(guest.update.title, systemImage: "shippingbox.fill")
                     Spacer()
-                    Button("Download") { guest.applyUpdate() }.buttonStyle(.bordered)
+                    Button("下载") { guest.applyUpdate() }.buttonStyle(.bordered)
                 }
             }
             if updates.available == nil && !guest.update.isSomething {
-                Label("Everything is up to date", systemImage: "checkmark.circle").foregroundStyle(.secondary)
+                Label("全部为最新", systemImage: "checkmark.circle").foregroundStyle(.secondary)
             }
         }
     }
@@ -138,7 +138,7 @@ private struct DownloadRow: View {
                         Image(systemName: "xmark.circle.fill").font(.title2)
                     }
                     .buttonStyle(.borderless)
-                    .accessibilityLabel("Cancel Download")
+                    .accessibilityLabel("取消下载")
                 }
             }
             if !job.complete { ProgressView(value: fraction) }
@@ -166,25 +166,25 @@ private struct AddDownloadSheet: View {
                     if let problem = downloads.problem { Text(problem).foregroundStyle(.orange) }
                 }
                 Section {
-                    Text("An APK is added to your library when it finishes. Anything else goes into the Shared Storage folder, which games see as their phone storage.")
-                    Text("To send a whole folder from a computer on the same Wi‑Fi, run this on it and enter the address it shows:")
+                    Text("下载完成的 APK 会加入游戏库；其他文件进入共享存储文件夹，游戏把它们当作手机存储。")
+                    Text("要从同一 Wi‑Fi 下的电脑发送整个文件夹，在那台电脑上运行以下命令并输入它显示的地址：")
                     Text("python3 serve-folder.py <folder>")
                         .font(.system(.footnote, design: .monospaced))
                         .textSelection(.enabled)
-                    Text("serve-folder.py is in Husk's repository, under tools. The folder's contents land at the top of Shared Storage, so serve the folder that holds what a game expects there.")
+                    Text("serve-folder.py 在 Husk 源码库的 tools 目录下。文件夹内容会出现在共享存储顶层，请共享游戏所需文件所在的文件夹。")
                 } header: {
-                    Text("How it works")
+                    Text("工作原理")
                 }
                 .font(.footnote)
                 .foregroundStyle(.secondary)
             }
-            .navigationTitle("Add Download")
+            .navigationTitle("新建下载")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
+                ToolbarItem(placement: .cancellationAction) { Button("取消") { dismiss() } }
                 ToolbarItem(placement: .confirmationAction) {
                     if working { ProgressView() } else {
-                        Button("Download") {
+                        Button("下载") {
                             working = true
                             Task {
                                 await downloads.add(link: link)

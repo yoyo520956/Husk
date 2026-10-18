@@ -179,7 +179,7 @@ final class CompatibilityStore: ObservableObject {
         }
         guard (200..<300).contains(http.statusCode) else {
             let message = (try? JSONSerialization.jsonObject(with: data) as? [String: Any])?["error"] as? String
-            throw NSError(domain: "Compatibility", code: 1, userInfo: [NSLocalizedDescriptionKey: message ?? "The compatibility list could not be reached."])
+            throw NSError(domain: "兼容性", code: 1, userInfo: [NSLocalizedDescriptionKey: message ?? "The compatibility list could not be reached."])
         }
         HuskLog.log("compat", "reported \(package): \(status.rawValue)")
         markAsked(package)
@@ -244,18 +244,18 @@ struct CompatibilitySection: View {
                 }
                 .padding(.vertical, 2)
                 if entry.community.reports > 0 {
-                    LabeledContent("Player Reports", value: "\(entry.community.reports)")
+                    LabeledContent("玩家报告", value: "\(entry.community.reports)")
                 }
             } else {
-                Text("Not on the list yet. Be the first to say how it runs.")
+                Text("还未收录，来做第一个报告运行情况的人。")
                     .font(.footnote).foregroundStyle(.secondary)
             }
-            Button { reporting = subject } label: { Label("Report How It Ran", systemImage: "square.and.pencil") }
-            Link(destination: compat.pageURL(subject.package)) { Label("Open on antiweb.lol", systemImage: "safari") }
+            Button { reporting = subject } label: { Label("报告运行情况", systemImage: "square.and.pencil") }
+            Link(destination: compat.pageURL(subject.package)) { Label("在 antiweb.lol 上打开", systemImage: "safari") }
         } header: {
-            Text("Compatibility")
+            Text("兼容性")
         } footer: {
-            if entry?.official != nil { Text("Tested by the Husk team on an iPhone.") }
+            if entry?.official != nil { Text("已由 Husk 团队在 iPhone 上实测。") }
         }
     }
 }
@@ -289,27 +289,27 @@ struct CompatReportSheet: View {
                 } header: {
                     Text(subject.afterPlaying ? "How did \(subject.name) run?" : "How does \(subject.name) run?")
                 }
-                Section("Notes") {
+                Section("备注") {
                     if #available(iOS 16, *) {
-                        TextField("What worked, what didn\u{2019}t, how far you got", text: $notes, axis: .vertical)
+                        TextField("哪里正常、哪里有问题、进行到了哪一步", text: $notes, axis: .vertical)
                             .lineLimit(3...8)
                     } else {
                         TextEditor(text: $notes).frame(minHeight: 80)
                     }
                 }
                 Section {
-                    TextField("Anonymous", text: $author)
+                    TextField("匿名", text: $author)
                         .textInputAutocapitalization(.never)
                         .autocorrectionDisabled()
                 } header: {
-                    Text("Your Name")
+                    Text("你的名称")
                 } footer: {
-                    Text("Sent with it: \(CompatibilityStore.device), iOS \(UIDevice.current.systemVersion), Husk build \(CompatibilityStore.build), JIT from \(CompatibilityStore.jitMethod). It shows on antiweb.lol for everyone.")
+                    Text("随报告附上：\(CompatibilityStore.device)、iOS \(UIDevice.current.systemVersion)、Husk build \(CompatibilityStore.build)、JIT 来源 \(CompatibilityStore.jitMethod)。所有人都能在 antiweb.lol 看到。")
                 }
                 Section {
-                    Toggle("Attach my log", isOn: $attachLog)
+                    Toggle("附上我的日志", isOn: $attachLog)
                 } footer: {
-                    Text("Your Husk log helps the developer see what went wrong. Only moderators can read it.")
+                    Text("你的 Husk 日志可帮助开发者了解问题所在，仅限版主查看。")
                 }
                 if let error {
                     Section { Text(error).foregroundStyle(.red) }
@@ -319,14 +319,14 @@ struct CompatReportSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(subject.afterPlaying ? "Not Now" : "Cancel") {
+                    Button(subject.afterPlaying ? "暂不" : "取消") {
                         if subject.afterPlaying { CompatibilityStore.shared.markAsked(subject.package) }
                         dismiss()
                     }
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     if sending { ProgressView() } else {
-                        Button("Send") { send() }.disabled(status == nil)
+                        Button("发送") { send() }.disabled(status == nil)
                     }
                 }
             }

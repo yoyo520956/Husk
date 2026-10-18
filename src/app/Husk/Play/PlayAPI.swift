@@ -171,7 +171,7 @@ enum PlayAPI {
         let (data, response) = try await urlSession.data(for: req)
         let kv = parseKeyValues(data)
         guard (response as? HTTPURLResponse)?.statusCode == 200, let token = kv["Token"], !token.isEmpty else {
-            throw PlayError("Google did not accept the sign-in (\(kv["Error"] ?? "HTTP \((response as? HTTPURLResponse)?.statusCode ?? 0)")).")
+            throw PlayError("Google did not accept the sign-in (\(kv["错误"] ?? "HTTP \((response as? HTTPURLResponse)?.statusCode ?? 0)")).")
         }
         return token
     }
@@ -207,7 +207,7 @@ enum PlayAPI {
         let (data, response) = try await urlSession.data(for: req)
         let kv = parseKeyValues(data)
         guard (response as? HTTPURLResponse)?.statusCode == 200, let token = kv["Auth"], !token.isEmpty else {
-            throw PlayError("Google Play would not open a session (\(kv["Error"] ?? "HTTP \((response as? HTTPURLResponse)?.statusCode ?? 0)")).")
+            throw PlayError("Google Play would not open a session (\(kv["错误"] ?? "HTTP \((response as? HTTPURLResponse)?.statusCode ?? 0)")).")
         }
         return token
     }

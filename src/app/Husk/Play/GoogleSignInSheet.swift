@@ -43,15 +43,15 @@ struct GoogleSignInSheet: View {
                     .background(Theme.surfaceHigh, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
                     .shadow(radius: 20)
                 } else if webLoading {
-                    ProgressView("Loading Google Sign-In…")
+                    ProgressView("正在加载 Google 登录…")
                         .font(.footnote)
                 }
             }
-            .navigationTitle("Sign in with Google")
+            .navigationTitle("使用 Google 登录")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
+                    Button("取消") {
                         dismiss()
                     }
                     .disabled(manager.isLoading)

@@ -444,7 +444,7 @@ final class Downloads: ObservableObject {
     }
 
     nonisolated static var stateDir: URL {
-        let dir = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("Downloads", isDirectory: true)
+        let dir = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("下载", isDirectory: true)
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         return dir
     }
@@ -715,7 +715,7 @@ private enum Live {
         guard !active.isEmpty else {
             if let a = activity {
                 let last = jobs.first
-                let state = HuskDownloadAttributes.ContentState(title: last?.title ?? "Downloads", received: last?.received ?? 0, total: last?.total ?? 0,
+                let state = HuskDownloadAttributes.ContentState(title: last?.title ?? "下载", received: last?.received ?? 0, total: last?.total ?? 0,
                                                                 finishBy: nil, started: started, finished: !(last?.failed ?? false), failed: last?.failed ?? false)
                 Task { await a.end(using: state, dismissalPolicy: .after(Date().addingTimeInterval(60 * 10))) }
                 activity = nil
@@ -724,7 +724,7 @@ private enum Live {
         }
         let received = active.reduce(0) { $0 + $1.received }, total = active.reduce(0) { $0 + $1.total }
         let finishBy = speed > 1 && total > received ? Date().addingTimeInterval(Double(total - received) / speed) : nil
-        let title = active.count == 1 ? active[0].title : "\(active.count) downloads"
+        let title = active.count == 1 ? active[0].title : "\(active.count) 个下载"
         var state = HuskDownloadAttributes.ContentState(title: title, received: received, total: total, finishBy: finishBy, started: started,
                                                         finished: false, failed: active.contains { $0.failed })
         state.speed = speed
@@ -787,7 +787,7 @@ enum ContinuedDownload {
             registered = pattern
         }
         let id = "\(bundle).downloads.\(UUID().uuidString.prefix(8))"
-        let request = BGContinuedProcessingTaskRequest(identifier: id, title: "Downloading \(title)", subtitle: "Starting…")
+        let request = BGContinuedProcessingTaskRequest(identifier: id, title: "正在下载 \(title)", subtitle: "Starting…")
         request.strategy = .fail
         do {
             try BGTaskScheduler.shared.submit(request)

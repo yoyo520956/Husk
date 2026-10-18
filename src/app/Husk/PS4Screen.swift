@@ -168,7 +168,7 @@ struct PS4PlayView: View {
                                 .frame(width: 36, height: 36).background(.black.opacity(0.55), in: Circle())
                         }
                         if model.running {
-                            Text("\(model.fps) fps").font(.system(size: 12, weight: .semibold).monospacedDigit())
+                            Text("\(model.fps) 帧/秒").font(.system(size: 12, weight: .semibold).monospacedDigit())
                                 .foregroundStyle(.white.opacity(0.8))
                                 .padding(.horizontal, 8).padding(.vertical, 4).background(.black.opacity(0.45), in: Capsule())
                         }
@@ -244,8 +244,8 @@ enum PS4Keyboard {
             $0.autocorrectionType = .no
             $0.clearButtonMode = .whileEditing
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in done(ctx, nil) })
-        alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak alert] _ in
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel) { _ in done(ctx, nil) })
+        alert.addAction(UIAlertAction(title: "好", style: .default) { [weak alert] _ in
             var text = alert?.textFields?.first?.text ?? ""
             if maxChars > 0, text.count > maxChars { text = String(text.prefix(maxChars)) }
             text.withCString { done(ctx, $0) }

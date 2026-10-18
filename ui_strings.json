@@ -1,0 +1,1189 @@
+{
+ "Cancel": [
+  "DiscoverTab.swift:Button",
+  "FilesTab.swift:Button",
+  "SettingsTab.swift:Button",
+  "SettingsTab.swift:Button",
+  "AppDetailView.swift:Button",
+  "IncomingFiles.swift:Button",
+  "Launcher.swift:Button",
+  "DownloadsTab.swift:Button",
+  "TLAppSettings.swift:Button",
+  "ContentView.swift:Button",
+  "GoogleSignInSheet.swift:Button",
+  "StoreView.swift:Button"
+ ],
+ "Done": [
+  "DiscoverTab.swift:Button",
+  "FilesTab.swift:Button",
+  "FilesTab.swift:Button",
+  "JITSetupView.swift:Button",
+  "DownloadsTab.swift:Button",
+  "ContentView.swift:Button",
+  "TLUnityView.swift:Button",
+  "CrashReport.swift:Button",
+  "StoreView.swift:Button"
+ ],
+ "Close": [
+  "AppWindows.swift:Label",
+  "TranslationLayer.swift:Label",
+  "WebAppViews.swift:Label",
+  "AppDiagnosis.swift:Text",
+  "JITSetupView.swift:Button",
+  "TLUnityView.swift:Label"
+ ],
+ "Settings": [
+  "ItemPages.swift:Section",
+  "SettingsTab.swift:Title",
+  "Launcher.swift:Label",
+  "Launcher.swift:Label",
+  "TLAppSettings.swift:Title",
+  "ContentView.swift:Label"
+ ],
+ "Uninstall": [
+  "ItemPages.swift:Button",
+  "ItemPages.swift:Label",
+  "AppDetailView.swift:Button",
+  "AppDetailView.swift:Label",
+  "AppDetailView.swift:Label",
+  "Launcher.swift:Label"
+ ],
+ "Back": [
+  "OnboardingView.swift:Text",
+  "OnboardingView.swift:Label",
+  "AppWindows.swift:Label",
+  "WebAppViews.swift:Label",
+  "TLUnityView.swift:Label"
+ ],
+ "About": [
+  "ItemPages.swift:Section",
+  "ItemPages.swift:Section",
+  "ItemPages.swift:Section",
+  "SettingsTab.swift:Title"
+ ],
+ "Appearance": [
+  "SettingsTab.swift:Title",
+  "SettingsTab.swift:Picker",
+  "OnboardingView.swift:Text",
+  "OnboardingView.swift:Picker"
+ ],
+ "Download": [
+  "DownloadsTab.swift:Button",
+  "DownloadsTab.swift:Button",
+  "ContentView.swift:Button",
+  "ContentView.swift:Button"
+ ],
+ "Remove": [
+  "ItemPages.swift:Button",
+  "SettingsTab.swift:Label",
+  "Launcher.swift:Label",
+  "DownloadsTab.swift:Label"
+ ],
+ "Add a Game or App": [
+  "Launcher.swift:Text",
+  "Launcher.swift:Label",
+  "Launcher.swift:Label"
+ ],
+ "Continue": [
+  "JITSetupView.swift:Button",
+  "JITSetupView.swift:Button",
+  "WhatsNew.swift:Text"
+ ],
+ "Downloads": [
+  "Launcher.swift:Label",
+  "DownloadsTab.swift:Text",
+  "DownloadsTab.swift:Title"
+ ],
+ "Husk": [
+  "SettingsTab.swift:Text",
+  "SettingsTab.swift:Text",
+  "Launcher.swift:Text"
+ ],
+ "Library": [
+  "SettingsTab.swift:Title",
+  "Launcher.swift:Title",
+  "ContentView.swift:Label"
+ ],
+ "Not Now": [
+  "OnboardingView.swift:Button",
+  "ContentView.swift:Button",
+  "ContentView.swift:Button"
+ ],
+ "Screenshots": [
+  "ItemPages.swift:Section",
+  "ItemPages.swift:Section",
+  "TLAppSettings.swift:Text"
+ ],
+ "Accent Colour": [
+  "SettingsTab.swift:Text",
+  "OnboardingView.swift:Text"
+ ],
+ "Add": [
+  "DiscoverTab.swift:Button",
+  "DownloadsTab.swift:Label"
+ ],
+ "Add Source": [
+  "DiscoverTab.swift:Title",
+  "DiscoverTab.swift:Label"
+ ],
+ "Another game is already loaded": [
+  "AppWindows.swift:Text",
+  "TLUnityView.swift:Text"
+ ],
+ "Cancel Download": [
+  "DownloadsTab.swift:Label",
+  "DownloadsTab.swift:Label"
+ ],
+ "Close Husk": [
+  "ItemPages.swift:Button",
+  "ItemPages.swift:Button"
+ ],
+ "Close Husk?": [
+  "ItemPages.swift:Dialog",
+  "ItemPages.swift:Dialog"
+ ],
+ "Compatibility": [
+  "SettingsTab.swift:Text",
+  "Compatibility.swift:Text"
+ ],
+ "Controls": [
+  "SettingsTab.swift:Text",
+  "ContentView.swift:Text"
+ ],
+ "Copy Package Name": [
+  "ItemPages.swift:Label",
+  "AppDetailView.swift:Label"
+ ],
+ "Device Checks": [
+  "SettingsTab.swift:Label",
+  "TranslationLayer.swift:Title"
+ ],
+ "Files": [
+  "ItemPages.swift:Label",
+  "Launcher.swift:Label"
+ ],
+ "Hide": [
+  "TranslationLayer.swift:Label",
+  "TLUnityView.swift:Label"
+ ],
+ "Home": [
+  "ContentView.swift:Label",
+  "ContentView.swift:Label"
+ ],
+ "Import": [
+  "FilesTab.swift:Title",
+  "FilesTab.swift:Label"
+ ],
+ "Input": [
+  "ItemPages.swift:Label",
+  "SettingsTab.swift:Title"
+ ],
+ "JIT": [
+  "SettingsTab.swift:Text",
+  "SettingsTab.swift:Text"
+ ],
+ "JIT is off": [
+  "JITCard.swift:Text",
+  "Launcher.swift:Text"
+ ],
+ "Last Run": [
+  "TechnicalDetails.swift:Text",
+  "ItemPages.swift:Section"
+ ],
+ "Mass Test": [
+  "SettingsTab.swift:Label",
+  "MassTest.swift:Title"
+ ],
+ "Multitasking": [
+  "SettingsTab.swift:Text",
+  "TLAppSettings.swift:Text"
+ ],
+ "Network": [
+  "ItemPages.swift:Label",
+  "SettingsTab.swift:Title"
+ ],
+ "Not now": [
+  "JITSetupView.swift:Button",
+  "ContentView.swift:Button"
+ ],
+ "Open in Files": [
+  "ItemPages.swift:Label",
+  "AppDetailView.swift:Label"
+ ],
+ "Performance": [
+  "ItemPages.swift:Label",
+  "SettingsTab.swift:Title"
+ ],
+ "Refresh": [
+  "DiscoverTab.swift:Label",
+  "FilesTab.swift:Label"
+ ],
+ "Remove Android": [
+  "SettingsTab.swift:Button",
+  "SettingsTab.swift:Label"
+ ],
+ "Renderer": [
+  "SettingsTab.swift:Text",
+  "SettingsTab.swift:Picker"
+ ],
+ "Repositories": [
+  "DiscoverTab.swift:Title",
+  "DiscoverTab.swift:Label"
+ ],
+ "Reset Game Data": [
+  "TLAppSettings.swift:Button",
+  "TLAppSettings.swift:Label"
+ ],
+ "Resolution": [
+  "SettingsTab.swift:Text",
+  "TLAppSettings.swift:Picker"
+ ],
+ "Screen": [
+  "SettingsTab.swift:Text",
+  "SettingsTab.swift:Picker"
+ ],
+ "Share Report": [
+  "AppDiagnosis.swift:Label",
+  "CrashReport.swift:Label"
+ ],
+ "Show": [
+  "AppWindows.swift:Label",
+  "Launcher.swift:Picker"
+ ],
+ "Sign In with Google": [
+  "StoreView.swift:Text",
+  "StoreView.swift:Label"
+ ],
+ "Sound": [
+  "SettingsTab.swift:Text",
+  "SettingsTab.swift:Toggle"
+ ],
+ "Starting \\(app.label)…": [
+  "AppWindows.swift:Text",
+  "TranslationLayer.swift:Text"
+ ],
+ "Store": [
+  "ContentView.swift:Label",
+  "StoreView.swift:Title"
+ ],
+ "Tap with three fingers to show the interface": [
+  "TranslationLayer.swift:Text",
+  "TLUnityView.swift:Text"
+ ],
+ "Technical Details": [
+  "TechnicalDetails.swift:Title",
+  "ItemPages.swift:Label"
+ ],
+ "Turn On": [
+  "JITCard.swift:Text",
+  "Launcher.swift:Text"
+ ],
+ "Uninstall \\(live.label)?": [
+  "ItemPages.swift:Dialog",
+  "AppDetailView.swift:Dialog"
+ ],
+ "\\(blockedBy ?? ": [
+  "ItemPages.swift:Text",
+  "ItemPages.swift:Text"
+ ],
+ "A backup is a .zip of everything \\(app.label) has saved in Husk, to keep in Files or move to another device.": [
+  "ItemPages.swift:Text"
+ ],
+ "A few quick choices first. Everything here can be changed later in Settings.": [
+  "OnboardingView.swift:Text"
+ ],
+ "A new look, PS4 games, and hundreds more Android games.": [
+  "WhatsNew.swift:Text"
+ ],
+ "ANDROID": [
+  "Launcher.swift:Text"
+ ],
+ "APKs install from the Library's + button or from the Files tab. ": [
+  "SettingsTab.swift:Text"
+ ],
+ "ATTEMPT LOG": [
+  "TLUnityView.swift:Text"
+ ],
+ "About this app": [
+  "StoreView.swift:Text"
+ ],
+ "Active Repositories": [
+  "DiscoverTab.swift:Text"
+ ],
+ "Add Download": [
+  "DownloadsTab.swift:Title"
+ ],
+ "Add a link to an APK or a file, or the address a computer gives you when it shares a folder.": [
+  "DownloadsTab.swift:Text"
+ ],
+ "Add to Husk": [
+  "IncomingFiles.swift:Text"
+ ],
+ "Add your first game": [
+  "Launcher.swift:Text"
+ ],
+ "Adds a sound device. While it is attached Android cannot be ": [
+  "SettingsTab.swift:Text"
+ ],
+ "Adds about 2 GB to the first download. It was captured on the ": [
+  "SettingsTab.swift:Text"
+ ],
+ "After playing, once per game per update": [
+  "SettingsTab.swift:Text"
+ ],
+ "All": [
+  "Launcher.swift:Text"
+ ],
+ "An APK is added to your library when it finishes. Anything else goes into the Shared Storage folder, which games see as their phone storage.": [
+  "DownloadsTab.swift:Text"
+ ],
+ "Android": [
+  "ItemPages.swift:Title"
+ ],
+ "Android App Info": [
+  "ItemPages.swift:Label"
+ ],
+ "Android Emulator": [
+  "SettingsTab.swift:Text"
+ ],
+ "Android and PS4 games, on your iPhone.": [
+  "OnboardingView.swift:Text"
+ ],
+ "Android and Translation Layer games need JIT. StikJIT, built into Husk, turns it on without a computer.": [
+  "SettingsTab.swift:Text"
+ ],
+ "Android installs it from where it already is — nothing is copied.": [
+  "FilesTab.swift:Text"
+ ],
+ "Android reaches the internet through a virtual ethernet card ": [
+  "SettingsTab.swift:Text"
+ ],
+ "Android runs fully emulated, so it is slower than games on the translation layer. Use it for apps ": [
+  "ItemPages.swift:Text"
+ ],
+ "Android will boot from cold once, then save a new one.": [
+  "SettingsTab.swift:Text"
+ ],
+ "Android's native code expects things of the processor and of memory ": [
+  "TranslationLayer.swift:Text"
+ ],
+ "Anonymous": [
+  "Compatibility.swift:Field"
+ ],
+ "App Icon": [
+  "SettingsTab.swift:Text"
+ ],
+ "App Info": [
+  "AppDetailView.swift:Label"
+ ],
+ "Apps and games open in a window you can move, resize and minimise to a dock, like LiveContainer's multitasking. ": [
+  "SettingsTab.swift:Text"
+ ],
+ "Ask How Games Ran": [
+  "SettingsTab.swift:Text"
+ ],
+ "Ask about Android updates": [
+  "SettingsTab.swift:Toggle"
+ ],
+ "Attach my log": [
+  "Compatibility.swift:Toggle"
+ ],
+ "Attach the sound device": [
+  "SettingsTab.swift:Toggle"
+ ],
+ "Automatic follows the system appearance — light, dark and tinted. The others pin ": [
+  "SettingsTab.swift:Text"
+ ],
+ "Automatic offers the controller for games that cannot be played without one (Unreal Engine games), when no real ": [
+  "TLAppSettings.swift:Text"
+ ],
+ "Back Up Saves": [
+  "ItemPages.swift:Label"
+ ],
+ "Back to Husk": [
+  "ContentView.swift:Label"
+ ],
+ "Boots the guest as soon as Husk opens, when JIT is available.": [
+  "SettingsTab.swift:Text"
+ ],
+ "Both sides must be between 240 and 2560.": [
+  "SettingsTab.swift:Text"
+ ],
+ "Browse Files": [
+  "FilesTab.swift:Button"
+ ],
+ "Browse and download apps using an anonymous Aurora guest account, or sign in with your Google account.": [
+  "StoreView.swift:Text"
+ ],
+ "CPU": [
+  "SettingsTab.swift:Text"
+ ],
+ "Cancel pairing": [
+  "JITSetupView.swift:Button"
+ ],
+ "Check setup": [
+  "JITSetupView.swift:Button"
+ ],
+ "Chinese, Japanese and Korean": [
+  "SettingsTab.swift:Text"
+ ],
+ "Choose another file": [
+  "JITSetupView.swift:Button"
+ ],
+ "Choose pairing file": [
+  "JITSetupView.swift:Label"
+ ],
+ "Clear": [
+  "Launcher.swift:Label"
+ ],
+ "Clear Finished": [
+  "DownloadsTab.swift:Button"
+ ],
+ "Compatibility List": [
+  "SettingsTab.swift:Label"
+ ],
+ "Console": [
+  "ContentView.swift:Label"
+ ],
+ "Continue with the current pairing": [
+  "JITSetupView.swift:Label"
+ ],
+ "Controller": [
+  "TLAppSettings.swift:Text"
+ ],
+ "Copy": [
+  "TLUnityView.swift:Label"
+ ],
+ "Could Not Load": [
+  "DiscoverTab.swift:Text"
+ ],
+ "Crash Report": [
+  "CrashReport.swift:Title"
+ ],
+ "Custom": [
+  "SettingsTab.swift:Text"
+ ],
+ "Custom Colour": [
+  "SettingsTab.swift:Picker"
+ ],
+ "Custom resolution": [
+  "SettingsTab.swift:Toggle"
+ ],
+ "Data": [
+  "TLAppSettings.swift:Text"
+ ],
+ "Delete saved machine": [
+  "SettingsTab.swift:Label"
+ ],
+ "Details": [
+  "Launcher.swift:Label"
+ ],
+ "Developer Info": [
+  "SettingsTab.swift:Text"
+ ],
+ "Discover": [
+  "DiscoverTab.swift:Title"
+ ],
+ "Display": [
+  "TLAppSettings.swift:Text"
+ ],
+ "Download Geode": [
+  "TLAppSettings.swift:Button"
+ ],
+ "Download pre-booted snapshot": [
+  "SettingsTab.swift:Toggle"
+ ],
+ "Drag a control to move it, or tap one to resize or hide it.": [
+  "TLUnityView.swift:Text"
+ ],
+ "Each app is played once JIT is on, watched for 15 seconds, and written down; then Husk closes. Open Husk again for the next one. At the end the results file is offered to share.": [
+  "MassTest.swift:Text"
+ ],
+ "Each time Husk opens without JIT, it asks TrollStore to turn it on. TrollStore's URL Scheme setting must be on.": [
+  "SettingsTab.swift:Text"
+ ],
+ "Enable JIT": [
+  "JITSetupView.swift:Label"
+ ],
+ "Enable JIT with TrollStore": [
+  "SettingsTab.swift:Label"
+ ],
+ "Enable JIT with \\(jit.resolvedMethod.title)": [
+  "SettingsTab.swift:Label"
+ ],
+ "Enter this code on your \\(device)": [
+  "JITSetupView.swift:Text"
+ ],
+ "Error": [
+  "StoreView.swift:Alert"
+ ],
+ "Everything installed or saved inside Android is deleted. Translation layer apps keep their data.": [
+  "SettingsTab.swift:Text"
+ ],
+ "Everything is up to date": [
+  "DownloadsTab.swift:Label"
+ ],
+ "Featured Apps": [
+  "StoreView.swift:Text"
+ ],
+ "First time? See the setup, or use StikDebug or TrollStore instead": [
+  "JITCard.swift:Text"
+ ],
+ "Fonts": [
+  "SettingsTab.swift:Title"
+ ],
+ "From the Store": [
+  "DownloadsTab.swift:Text"
+ ],
+ "Full Android emulation is experimental. It is slow, takes minutes to start, and can freeze or crash Husk. ": [
+  "ContentView.swift:Text"
+ ],
+ "Full Android runs in an emulator, for the apps the Translation Layer can't run yet. It is experimental: slow, ": [
+  "SettingsTab.swift:Text"
+ ],
+ "GPU": [
+  "SettingsTab.swift:Text"
+ ],
+ "GPU machine": [
+  "SettingsTab.swift:Button"
+ ],
+ "Game Settings": [
+  "ItemPages.swift:Label"
+ ],
+ "Game pages and the Store show how each app runs for everyone, from antiweb.lol. Your reports go there ": [
+  "SettingsTab.swift:Text"
+ ],
+ "Games and Android can run.": [
+  "JITCard.swift:Text"
+ ],
+ "Games or Apps": [
+  "Launcher.swift:Label"
+ ],
+ "General": [
+  "SettingsTab.swift:Section"
+ ],
+ "Generate App Clip": [
+  "TLAppSettings.swift:Label"
+ ],
+ "Geode": [
+  "TLAppSettings.swift:Toggle"
+ ],
+ "Geode is the mod loader for Geometry Dash. With it on, Husk downloads Geode for this version of the ": [
+  "TLAppSettings.swift:Text"
+ ],
+ "Get": [
+  "DiscoverTab.swift:Button"
+ ],
+ "Get Android First": [
+  "ItemPages.swift:Label"
+ ],
+ "Google Play Store": [
+  "StoreView.swift:Text"
+ ],
+ "HUSK": [
+  "BootScreen.swift:Text"
+ ],
+ "Height": [
+  "SettingsTab.swift:Text"
+ ],
+ "Help": [
+  "FAQTab.swift:Title"
+ ],
+ "Hide the interface": [
+  "TLAppSettings.swift:Toggle"
+ ],
+ "Holiday Decorations": [
+  "SettingsTab.swift:Toggle"
+ ],
+ "Home Screen": [
+  "TLAppSettings.swift:Text"
+ ],
+ "How each 64-bit library maps onto the iPhone: its relocations, the instructions Husk rewrites, and anything the loader works around.": [
+  "TechnicalDetails.swift:Text"
+ ],
+ "How it connects": [
+  "SettingsTab.swift:Text"
+ ],
+ "How it works": [
+  "DownloadsTab.swift:Text"
+ ],
+ "Husk \\(release.version)": [
+  "DownloadsTab.swift:Label"
+ ],
+ "Husk \\(updates.available?.version ?? ": [
+  "ContentView.swift:Alert"
+ ],
+ "Husk needs memory it can write and then execute, which on iOS ": [
+  "SettingsTab.swift:Text"
+ ],
+ "Husk restores a saved machine instead of booting it, which takes ": [
+  "SettingsTab.swift:Text"
+ ],
+ "Husk runs unmodified Android APKs in a real Android system on your iPhone. ": [
+  "SettingsTab.swift:Text"
+ ],
+ "Husk was marked as debugged when it opened, so JIT is on.": [
+  "JITSetupView.swift:Label"
+ ],
+ "Import Files": [
+  "FilesTab.swift:Text"
+ ],
+ "In a window, \\(app.label) runs over Husk: move it by its title bar, resize it from the corner, and minimise it to ": [
+  "TLAppSettings.swift:Text"
+ ],
+ "Install": [
+  "FilesTab.swift:Button"
+ ],
+ "Install \\(installing?.name ?? ": [
+  "FilesTab.swift:Dialog"
+ ],
+ "Installed": [
+  "SettingsTab.swift:Label"
+ ],
+ "It opens as soon as Android answers.": [
+  "AppDetailView.swift:Text"
+ ],
+ "It's connected": [
+  "JITSetupView.swift:Button"
+ ],
+ "Its data goes with it.": [
+  "ItemPages.swift:Text"
+ ],
+ "Its data goes with it. Save Android afterwards or the change is ": [
+  "AppDetailView.swift:Text"
+ ],
+ "JIT & sideload": [
+  "SettingsTab.swift:Title"
+ ],
+ "JIT is on": [
+  "JITCard.swift:Text"
+ ],
+ "Keep debugger attached": [
+  "SettingsTab.swift:Toggle"
+ ],
+ "Keep the network across saves": [
+  "SettingsTab.swift:Toggle"
+ ],
+ "Keep the screen on": [
+  "TLAppSettings.swift:Toggle"
+ ],
+ "Landscape": [
+  "SettingsTab.swift:Text"
+ ],
+ "Last lines": [
+  "CrashReport.swift:Text"
+ ],
+ "Live Activities are off for Husk, so downloads don't show on the Lock Screen or in the Dynamic Island. Turn them on in Settings › Husk › Live Activities.": [
+  "DownloadsTab.swift:Text"
+ ],
+ "Logs": [
+  "ContentView.swift:Title"
+ ],
+ "Make a folder named DeveloperTesting in Husk's folder (Files > On My iPhone > Husk) and put the APKs to test in it: an APK each, or a folder per app with its base and split APKs.": [
+  "MassTest.swift:Text"
+ ],
+ "Manage Repositories": [
+  "DiscoverTab.swift:Label"
+ ],
+ "Menu": [
+  "Launcher.swift:Label"
+ ],
+ "Metadata Updated": [
+  "ContentView.swift:Alert"
+ ],
+ "Metadata for \\(n) of your app\\(n == 1 ? ": [
+  "ContentView.swift:Text"
+ ],
+ "Method": [
+  "SettingsTab.swift:Picker"
+ ],
+ "Mods": [
+  "TLAppSettings.swift:Text"
+ ],
+ "More for \\(item.title)": [
+  "Launcher.swift:Label"
+ ],
+ "Name": [
+  "TLAppSettings.swift:Field"
+ ],
+ "Names and icons come from Android's own launcher, which keeps ": [
+  "SettingsTab.swift:Text"
+ ],
+ "Native Libraries (\\(arm64.count))": [
+  "TechnicalDetails.swift:Text"
+ ],
+ "No Results": [
+  "Launcher.swift:Text"
+ ],
+ "No apps found for \\\"\\(debouncedSearchText)\\\".": [
+  "StoreView.swift:Text"
+ ],
+ "No downloads": [
+  "DownloadsTab.swift:Text"
+ ],
+ "No featured apps available. Try searching above.": [
+  "StoreView.swift:Text"
+ ],
+ "No jailbreak was found on this \\(device).": [
+  "JITSetupView.swift:Label"
+ ],
+ "Not on the list yet. Be the first to say how it runs.": [
+  "Compatibility.swift:Text"
+ ],
+ "Not yet": [
+  "ContentView.swift:Text"
+ ],
+ "Notes": [
+  "Compatibility.swift:Section"
+ ],
+ "Nothing here is called “\\(query)”.": [
+  "Launcher.swift:Text"
+ ],
+ "Nothing matches “\\(query)”. Open Settings › About › Open Console to see what Husk is doing.": [
+  "FAQTab.swift:Text"
+ ],
+ "Noto Sans CJK, the font Android uses for these languages. Games and apps that draw their own text (Unity, Flutter, ": [
+  "SettingsTab.swift:Text"
+ ],
+ "Now": [
+  "SettingsTab.swift:Text"
+ ],
+ "OK": [
+  "StoreView.swift:Button"
+ ],
+ "Off by default. Husk detaches StikDebug as soon as the ": [
+  "SettingsTab.swift:Text"
+ ],
+ "On-screen controller": [
+  "TLAppSettings.swift:Picker"
+ ],
+ "Opacity": [
+  "TLAppSettings.swift:Text"
+ ],
+ "Open": [
+  "DiscoverTab.swift:Button"
+ ],
+ "Open Apps in Windows": [
+  "SettingsTab.swift:Text"
+ ],
+ "Open Console": [
+  "SettingsTab.swift:Label"
+ ],
+ "Open In": [
+  "TLAppSettings.swift:Picker"
+ ],
+ "Open Settings": [
+  "JITSetupView.swift:Button"
+ ],
+ "Open on antiweb.lol": [
+  "Compatibility.swift:Label"
+ ],
+ "Open the Library": [
+  "Launcher.swift:Label"
+ ],
+ "Orientation": [
+  "TLAppSettings.swift:Picker"
+ ],
+ "Other Ways to Turn On JIT": [
+  "SettingsTab.swift:Text"
+ ],
+ "Package": [
+  "TechnicalDetails.swift:Section"
+ ],
+ "Pairing code \\(pin.map(String.init).joined(separator: ": [
+  "JITSetupView.swift:Label"
+ ],
+ "Paste any F-Droid-compatible repository index URL.": [
+  "DiscoverTab.swift:Text"
+ ],
+ "Performance readout": [
+  "TLAppSettings.swift:Toggle"
+ ],
+ "Pick an APK or a bundle (.xapk, .apkm, .apks), or share one to Husk from Files or Safari. Games run ": [
+  "Launcher.swift:Text"
+ ],
+ "Portrait": [
+  "SettingsTab.swift:Text"
+ ],
+ "Preset": [
+  "SettingsTab.swift:Picker"
+ ],
+ "Presets": [
+  "DiscoverTab.swift:Section"
+ ],
+ "Preview": [
+  "StoreView.swift:Text"
+ ],
+ "Puts \\(app.label) on your Home Screen with its own icon. Tapping it opens Husk straight into the game. Husk ": [
+  "TLAppSettings.swift:Text"
+ ],
+ "Re-fetch icons": [
+  "SettingsTab.swift:Label"
+ ],
+ "Recently added": [
+  "Launcher.swift:Text"
+ ],
+ "Remove Android?": [
+  "SettingsTab.swift:Dialog"
+ ],
+ "Remove Game": [
+  "ItemPages.swift:Label"
+ ],
+ "Remove \\(app.label)?": [
+  "ItemPages.swift:Dialog"
+ ],
+ "Replace": [
+  "ItemPages.swift:Button"
+ ],
+ "Replace \\(app.label)'s saves?": [
+  "ItemPages.swift:Dialog"
+ ],
+ "Report How It Ran": [
+  "Compatibility.swift:Label"
+ ],
+ "Report to the Compatibility List": [
+  "CrashReport.swift:Label"
+ ],
+ "Reset": [
+  "TLUnityView.swift:Button"
+ ],
+ "Reset All": [
+  "TLUnityView.swift:Button"
+ ],
+ "Reset Developer Disk Image": [
+  "JITSetupView.swift:Button"
+ ],
+ "Reset the data of \\(app.label)?": [
+  "TLAppSettings.swift:Dialog"
+ ],
+ "Resize": [
+  "AppWindows.swift:Label"
+ ],
+ "Restore Saves": [
+  "ItemPages.swift:Label"
+ ],
+ "Retest \\(test.failures.count) Failures": [
+  "MassTest.swift:Button"
+ ],
+ "Run Again": [
+  "TranslationLayer.swift:Button"
+ ],
+ "Runtime": [
+  "TechnicalDetails.swift:Section"
+ ],
+ "Save automatically": [
+  "SettingsTab.swift:Toggle"
+ ],
+ "Saved Machine": [
+  "ItemPages.swift:Label"
+ ],
+ "Saved machine": [
+  "SettingsTab.swift:Title"
+ ],
+ "Saves": [
+  "ItemPages.swift:Text"
+ ],
+ "Saves, settings and caches the game made here are deleted.": [
+  "TLAppSettings.swift:Text"
+ ],
+ "Saving keeps Android exactly as it is, so the next start skips booting.": [
+  "ItemPages.swift:Text"
+ ],
+ "Search Results": [
+  "StoreView.swift:Text"
+ ],
+ "Search to see \\(apps.count - 50) more apps.": [
+  "DiscoverTab.swift:Text"
+ ],
+ "Send": [
+  "Compatibility.swift:Button"
+ ],
+ "Sent with it: \\(CompatibilityStore.device), iOS \\(UIDevice.current.systemVersion), Husk build \\(CompatibilityStore.build), JIT from \\(CompatibilityStore.jitMethod). It shows on antiweb.lol for everyone.": [
+  "Compatibility.swift:Text"
+ ],
+ "Set up JIT": [
+  "SettingsTab.swift:Label"
+ ],
+ "Share Log": [
+  "TechnicalDetails.swift:Label"
+ ],
+ "Share Results": [
+  "MassTest.swift:Button"
+ ],
+ "Show All": [
+  "Launcher.swift:Button"
+ ],
+ "Show Me Around": [
+  "OnboardingView.swift:Button"
+ ],
+ "Show in Android Settings": [
+  "AppDetailView.swift:Label"
+ ],
+ "Sideloading": [
+  "SettingsTab.swift:Text"
+ ],
+ "Sign In": [
+  "StoreView.swift:Text"
+ ],
+ "Sign Out": [
+  "StoreView.swift:Label"
+ ],
+ "Sign in with Google": [
+  "GoogleSignInSheet.swift:Title"
+ ],
+ "Software machine": [
+  "SettingsTab.swift:Button"
+ ],
+ "Source URL": [
+  "DiscoverTab.swift:Text"
+ ],
+ "Start": [
+  "ContentView.swift:Button"
+ ],
+ "Start Android on launch": [
+  "SettingsTab.swift:Toggle"
+ ],
+ "Start Android to uninstall or look inside the app.": [
+  "ItemPages.swift:Text"
+ ],
+ "Start Android?": [
+  "ContentView.swift:Alert"
+ ],
+ "Start Mass Test": [
+  "MassTest.swift:Button"
+ ],
+ "Start pairing": [
+  "JITSetupView.swift:Label"
+ ],
+ "Stop": [
+  "MassTest.swift:Button"
+ ],
+ "Stop Download": [
+  "StoreView.swift:Label"
+ ],
+ "Storage": [
+  "FilesTab.swift:Text"
+ ],
+ "System follows the phone: light by day, dark by night. The guest's own ": [
+  "SettingsTab.swift:Text"
+ ],
+ "Technical detail in the Android Translation Layer screens: ": [
+  "SettingsTab.swift:Text"
+ ],
+ "Tested by the Husk team on an iPhone.": [
+  "Compatibility.swift:Text"
+ ],
+ "The end of the log from the last time the game started. Share it when reporting a problem.": [
+  "TechnicalDetails.swift:Text"
+ ],
+ "The game and everything it saved here are deleted from Husk.": [
+  "ItemPages.swift:Text"
+ ],
+ "The game starts with nothing over it: no bar, no controller, no readout. Tap with three fingers at once to bring ": [
+  "TLAppSettings.swift:Text"
+ ],
+ "The game stopped": [
+  "TranslationLayer.swift:Text"
+ ],
+ "The list is written to disk, so it is on screen before Android ": [
+  "SettingsTab.swift:Text"
+ ],
+ "The pairing file stays in Husk's Documents folder and is only sent to Husk's own helper.": [
+  "JITSetupView.swift:Label"
+ ],
+ "The panel is built when the machine starts, so a change costs ": [
+  "SettingsTab.swift:Text"
+ ],
+ "The plan, in order, is docs/04-translation-layer.md in Husk's source.": [
+  "TranslationLayer.swift:Text"
+ ],
+ "The report holds the full log of that run and which device and build it was on. Nothing is sent anywhere unless you share it.": [
+  "CrashReport.swift:Text"
+ ],
+ "Theme": [
+  "SettingsTab.swift:Text"
+ ],
+ "They go to \\((destination as NSString).lastPathComponent). ": [
+  "FilesTab.swift:Text"
+ ],
+ "This APK has no 64-bit code Husk can run, so it will probably not start.": [
+  "ItemPages.swift:Text"
+ ],
+ "This iPhone": [
+  "TranslationLayer.swift:Text"
+ ],
+ "This installation can only wait about 30 seconds in the background, ": [
+  "JITSetupView.swift:Text"
+ ],
+ "This is Geode's Android launcher. On Husk, Geode runs inside Geometry Dash instead: turn it on here ": [
+  "ItemPages.swift:Text"
+ ],
+ "This was removed.": [
+  "Launcher.swift:Text"
+ ],
+ "Tints buttons, switches and selected states throughout the app.": [
+  "SettingsTab.swift:Text"
+ ],
+ "To send a whole folder from a computer on the same Wi‑Fi, run this on it and enter the address it shows:": [
+  "DownloadsTab.swift:Text"
+ ],
+ "Touch always works. A gamepad and a pointer are not wired ": [
+  "ContentView.swift:Text"
+ ],
+ "Touch is always on. The keyboard and the rotate control are ": [
+  "SettingsTab.swift:Text"
+ ],
+ "TrollStore was not found on this \\(device). It installs on iOS 14.0 to 17.0.": [
+  "JITSetupView.swift:Label"
+ ],
+ "Try Again": [
+  "TLAppSettings.swift:Button"
+ ],
+ "Turn On JIT at Launch": [
+  "SettingsTab.swift:Toggle"
+ ],
+ "Turn On JIT with TrollStore at Launch": [
+  "SettingsTab.swift:Toggle"
+ ],
+ "Turn on JIT": [
+  "JITCard.swift:Text"
+ ],
+ "Updates": [
+  "DownloadsTab.swift:Section"
+ ],
+ "Use Guest Account": [
+  "StoreView.swift:Text"
+ ],
+ "Use Guest Account (Aurora)": [
+  "StoreView.swift:Label"
+ ],
+ "Use Husk while an app runs": [
+  "SettingsTab.swift:Text"
+ ],
+ "Use Husk while it starts": [
+  "BootScreen.swift:Button"
+ ],
+ "Use StikDebug": [
+  "JITSetupView.swift:Button"
+ ],
+ "Use TrollStore": [
+  "JITSetupView.swift:Button"
+ ],
+ "Use the jailbreak": [
+  "JITSetupView.swift:Button"
+ ],
+ "Version \\(Bundle.main.version)": [
+  "SettingsTab.swift:Text"
+ ],
+ "Version \\(Bundle.main.version) · \\(Bundle.main.commit)": [
+  "SettingsTab.swift:Text"
+ ],
+ "Vibrate on a press": [
+  "TLAppSettings.swift:Toggle"
+ ],
+ "View": [
+  "DownloadsTab.swift:Button"
+ ],
+ "View Release": [
+  "ContentView.swift:Button"
+ ],
+ "Waiting for your \\(device)…": [
+  "JITSetupView.swift:Text"
+ ],
+ "Welcome to Husk": [
+  "OnboardingView.swift:Text"
+ ],
+ "What \\(app.label) has saved now is replaced by the backup. Back up first if you want to keep it.": [
+  "ItemPages.swift:Text"
+ ],
+ "What the game is called in Husk. The game itself is not changed.": [
+  "TLAppSettings.swift:Text"
+ ],
+ "What worked, what didn\\u{2019}t, how far you got": [
+  "Compatibility.swift:Field"
+ ],
+ "What's New in Husk \\(WhatsNew.version)": [
+  "WhatsNew.swift:Text"
+ ],
+ "When a new Android image or snapshot is published, Husk asks once whether to download it. ": [
+  "SettingsTab.swift:Text"
+ ],
+ "Where it stands": [
+  "TranslationLayer.swift:Text"
+ ],
+ "Which saved machine?": [
+  "SettingsTab.swift:Dialog"
+ ],
+ "Width": [
+  "SettingsTab.swift:Text"
+ ],
+ "You can skip this: Husk asks again when a game needs it, and it is in Settings › JIT & Sideload.": [
+  "OnboardingView.swift:Text"
+ ],
+ "You have \\(AppUpdates.current). The new version's IPA is on its release page.": [
+  "ContentView.swift:Text"
+ ],
+ "Your Husk log helps the developer see what went wrong. Only moderators can read it.": [
+  "Compatibility.swift:Text"
+ ],
+ "Your Name": [
+  "Compatibility.swift:Text"
+ ],
+ "\\(AppDetailView.bytes(s.total - s.free)) of \\(AppDetailView.bytes(s.total))": [
+  "FilesTab.swift:Text"
+ ],
+ "\\(Downloads.bytes(free)) free on this device.": [
+  "DownloadsTab.swift:Text"
+ ],
+ "\\(app.label) has been started in this run of Husk. Close Husk and open it again to restore saves.": [
+  "ItemPages.swift:Text"
+ ],
+ "\\(app.label), minimised": [
+  "AppWindows.swift:Label"
+ ],
+ "\\(items.count)": [
+  "Launcher.swift:Text"
+ ],
+ "\\(live.label) opens by itself once Android has started.": [
+  "ItemPages.swift:Text"
+ ],
+ "\\(manager.downloadProgress.count) Downloading": [
+  "StoreView.swift:Label"
+ ],
+ "\\(model.fps) fps": [
+  "PS4Screen.swift:Text"
+ ],
+ "\\(number)": [
+  "JITSetupView.swift:Text"
+ ],
+ "\\(other) is still loaded, and a game cannot be unloaded once it has started. Close Husk with the ": [
+  "ItemPages.swift:Text"
+ ],
+ "\\(other) was started in this session, and a game cannot be unloaded once it has started. Close Husk completely and open it again to run \\(app.label).": [
+  "TLUnityView.swift:Text"
+ ],
+ "\\(other) was started in this session. Close Husk completely and open it again to run \\(app.label).": [
+  "AppWindows.swift:Text"
+ ],
+ "\\(settings.resolution.detail) Orientation and resolution apply the next time the game starts, and a game already ": [
+  "TLAppSettings.swift:Text"
+ ],
+ "\\(source.apps.count) apps": [
+  "DiscoverTab.swift:Text"
+ ],
+ "ctrl": [
+  "HuskKeyboard.swift:Text"
+ ],
+ "https://f-droid.org/repo/index-v1.json": [
+  "DiscoverTab.swift:Field"
+ ],
+ "https://… or http://192.168.1.20:8642/": [
+  "DownloadsTab.swift:Field"
+ ],
+ "python3 serve-folder.py <folder>": [
+  "DownloadsTab.swift:Text"
+ ],
+ "serve-folder.py is in Husk's repository, under tools. The folder's contents land at the top of Shared Storage, so serve the folder that holds what a game expects there.": [
+  "DownloadsTab.swift:Text"
+ ]
+}

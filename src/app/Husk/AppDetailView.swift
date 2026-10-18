@@ -115,25 +115,25 @@ struct AppDetailView: View {
                 .disabled(!canOpen)
                 .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
             } footer: {
-                if !host.isReady { Text("It opens as soon as Android answers.") }
+                if !host.isReady { Text("安卓系统响应后立即打开。") }
             }
 
             Section {
                 LabeledContent("Version", value: live.version ?? "—")
                 LabeledContent("Size", value: live.sizeBytes.map(Self.bytes) ?? "—")
-                LabeledContent("Last Used", value: live.lastUsed.map(Self.when) ?? "Never from Husk")
+                LabeledContent("上次使用", value: live.lastUsed.map(Self.when) ?? "Never from Husk")
             }
 
             Section {
                 Button { router.openFiles(at: "/sdcard/Android/data/\(app.name)") } label: {
-                    Label("Open in Files", systemImage: "folder")
+                    Label("在“文件”中打开", systemImage: "folder")
                 }
                 Button { appInfo() } label: {
-                    Label("App Info", systemImage: "info.circle")
+                    Label("应用信息", systemImage: "info.circle")
                 }
                 .disabled(!canOpen)
                 Button(role: .destructive) { confirmUninstall = true } label: {
-                    Label("Uninstall", systemImage: "trash")
+                    Label("卸载", systemImage: "trash")
                 }
                 .disabled(!canOpen)
             }
@@ -142,16 +142,15 @@ struct AppDetailView: View {
         .navigationTitle(live.label)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar { ToolbarItem(placement: .topBarTrailing) { menu } }
-        .confirmationDialog("Uninstall \(live.label)?", isPresented: $confirmUninstall,
+        .confirmationDialog("卸载 \(live.label)？", isPresented: $confirmUninstall,
                             titleVisibility: .visible) {
-            Button("Uninstall", role: .destructive) {
+            Button("卸载", role: .destructive) {
                 host.uninstall(app.name)
                 dismiss()
             }
-            Button("Cancel", role: .cancel) { }
+            Button("取消", role: .cancel) { }
         } message: {
-            Text("Its data goes with it. Save Android afterwards or the change is "
-               + "lost on the next launch.")
+            Text("数据随之一并删除。之后请保存安卓快照，否则更改会在下次启动时丢失。")
         }
     }
 
@@ -161,14 +160,14 @@ struct AppDetailView: View {
         Menu {
             Button {
                 UIPasteboard.general.string = app.name
-            } label: { Label("Copy Package Name", systemImage: "doc.on.doc") }
+            } label: { Label("拷贝包名", systemImage: "doc.on.doc") }
             Button { appInfo() } label: {
-                Label("Show in Android Settings", systemImage: "gearshape")
+                Label("在安卓设置中显示", systemImage: "gearshape")
             }
             .disabled(!canOpen)
             Divider()
             Button(role: .destructive) { confirmUninstall = true } label: {
-                Label("Uninstall", systemImage: "trash")
+                Label("卸载", systemImage: "trash")
             }
             .disabled(!canOpen)
         } label: {

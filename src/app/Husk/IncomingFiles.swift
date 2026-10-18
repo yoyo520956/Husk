@@ -261,20 +261,20 @@ struct IncomingChooser: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 18) {
             VStack(alignment: .leading, spacing: 4) {
-                Text("Add to Husk").font(.title2.weight(.bold))
+                Text("添加到 Husk").font(.title2.weight(.bold))
                 Text(title).font(.subheadline).foregroundStyle(.secondary).lineLimit(2)
             }
 
-            choice(icon: "bolt.fill", title: "Translation Layer",
-                   detail: "Runs the game directly on your iPhone, without starting Android. Best for games.") {
+            choice(icon: "bolt.fill", title: "翻译层",
+                   detail: "在 iPhone 上直接运行游戏，无需启动安卓。最适合游戏。") {
                 incoming.sendToTranslationLayer()
             }
-            choice(icon: "apps.iphone", title: "Android",
+            choice(icon: "apps.iphone", title: "安卓系统",
                    detail: androidDetail) {
                 incoming.sendToAndroid()
             }
 
-            Button("Cancel", role: .cancel) { incoming.discard() }
+            Button("取消", role: .cancel) { incoming.discard() }
                 .frame(maxWidth: .infinity)
                 .padding(.top, 2)
         }

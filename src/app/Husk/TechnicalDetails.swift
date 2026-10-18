@@ -53,16 +53,16 @@ struct TLTechnicalView: View {
 
     var body: some View {
         List {
-            Section("Runtime") {
+            Section("运行时") {
                 row("Runs With", report?.runnerName ?? "Not scanned")
-                row("Package", app.packageName ?? "—", mono: true)
+                row("安装包", app.packageName ?? "—", mono: true)
                 row("Architectures", report.map { $0.abis.isEmpty ? "None (Java only)" : $0.abis.joined(separator: ", ") } ?? "—")
                 if let summary = report?.displaySummary {
                     Text(summary).font(.footnote).foregroundStyle(.secondary)
                 }
             }
 
-            Section("Package") {
+            Section("安装包") {
                 ForEach(app.apks, id: \.self) { apk in
                     row((apk as NSString).lastPathComponent, size(of: apk), mono: true)
                 }
@@ -87,9 +87,9 @@ struct TLTechnicalView: View {
                         .padding(.vertical, 2)
                     }
                 } header: {
-                    Text("Native Libraries (\(arm64.count))")
+                    Text("原生库（\(arm64.count)）")
                 } footer: {
-                    Text("How each 64-bit library maps onto the iPhone: its relocations, the instructions Husk rewrites, and anything the loader works around.")
+                    Text("每个 64 位库在 iPhone 上的映射方式：其重定位、Husk 改写的指令，以及加载器绕过的兼容问题。")
                 }
             }
 
@@ -103,19 +103,19 @@ struct TLTechnicalView: View {
                             .padding(.vertical, 4)
                     }
                     .frame(maxHeight: 320)
-                    Button { sharing = true } label: { Label("Share Log", systemImage: "square.and.arrow.up") }
+                    Button { sharing = true } label: { Label("分享日志", systemImage: "square.and.arrow.up") }
                 } else {
                     Text(log == nil ? "Reading…" : "No log yet. It is written the first time the game runs.")
                         .font(.footnote).foregroundStyle(.secondary)
                 }
             } header: {
-                Text("Last Run")
+                Text("上次运行")
             } footer: {
-                Text("The end of the log from the last time the game started. Share it when reporting a problem.")
+                Text("这是上次游戏启动日志的末尾，反馈问题时请附上它。")
             }
         }
         .listStyle(.insetGrouped)
-        .navigationTitle("Technical Details")
+        .navigationTitle("技术细节")
         .navigationBarTitleDisplayMode(.inline)
         .task {
             let url = logURL, dir = app.dataDirectory

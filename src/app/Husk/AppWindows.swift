@@ -167,8 +167,8 @@ private struct AppWindow: View {
             WebAppSurface(app: app)
         } else if let other = blockedBy {
             VStack(spacing: 6) {
-                Text("Another game is already loaded").font(.subheadline.weight(.semibold))
-                Text("\(other) was started in this session. Close Husk completely and open it again to run \(app.label).")
+                Text("已有另一个游戏在运行").font(.subheadline.weight(.semibold))
+                Text("\(other) 已在本次会话中启动。请完全关闭 Husk 再重新打开，即可运行 \(app.label)。")
                     .font(.caption).foregroundStyle(.secondary).multilineTextAlignment(.center)
             }
             .foregroundStyle(.white)
@@ -184,7 +184,7 @@ private struct AppWindow: View {
                                 Text(model.statusText).font(.subheadline.weight(.semibold)).foregroundStyle(.white)
                             } else {
                                 ProgressView().tint(.white)
-                                Text("Starting \(app.label)…").font(.caption).foregroundStyle(.white.opacity(0.7))
+                                Text("正在启动 \(app.label)…").font(.caption).foregroundStyle(.white.opacity(0.7))
                             }
                         }
                         .allowsHitTesting(false)
@@ -195,7 +195,7 @@ private struct AppWindow: View {
 
     private var titleBar: some View {
         HStack(spacing: 8) {
-            light(.red, "xmark", "Close") { windows.close() }
+            light(.red, "xmark", "关闭") { windows.close() }
             light(.yellow, "minus", "Minimise") { windows.minimize() }
             light(.green, windows.maximized ? "arrow.down.right.and.arrow.up.left" : "arrow.up.left.and.arrow.down.right",
                   windows.maximized ? "Restore" : "Maximise") { windows.toggleMaximized() }
@@ -205,7 +205,7 @@ private struct AppWindow: View {
                     Image(systemName: "chevron.backward").font(.system(size: 13, weight: .semibold)).frame(width: 28, height: 28)
                 }
                 .buttonStyle(.plain)
-                .accessibilityLabel("Back")
+                .accessibilityLabel("返回")
             }
             ItemIcon(item: .game(app), size: 18)
             Text(app.label).font(.footnote.weight(.semibold)).lineLimit(1)
@@ -266,7 +266,7 @@ private struct AppWindow: View {
                     }
                     .onEnded { _ in startFrame = nil }
             )
-            .accessibilityLabel("Resize")
+            .accessibilityLabel("调整大小")
     }
 }
 
@@ -305,10 +305,10 @@ private struct WindowDock: View {
                     }
             )
             .contextMenu {
-                Button { windows.restore() } label: { Label("Show", systemImage: "macwindow") }
-                Button(role: .destructive) { windows.close() } label: { Label("Close", systemImage: "xmark") }
+                Button { windows.restore() } label: { Label("显示", systemImage: "macwindow") }
+                Button(role: .destructive) { windows.close() } label: { Label("关闭", systemImage: "xmark") }
             }
-            .accessibilityLabel("\(app.label), minimised")
+            .accessibilityLabel("\(app.label)（已最小化）")
             .accessibilityHint("Shows the window again")
     }
 }
