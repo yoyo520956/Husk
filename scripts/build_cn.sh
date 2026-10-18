@@ -28,7 +28,7 @@ command -v xcodegen >/dev/null 2>&1 || brew install xcodegen
 
 echo "===== 4/5 xcodebuild (unsigned) ====="
 set -o pipefail
-xcodebuild -project src/app/Husk.xcodeproj -target Husk -configuration Release \
+xcodebuild -project src/app/Husk.xcodeproj -scheme Husk -configuration Release \
   -destination 'generic/platform=iOS' -derivedDataPath build/dd \
   CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO build 2>&1 | {
   # keep the tail visible but fail on BUILD FAILED / errors
